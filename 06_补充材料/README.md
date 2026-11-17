@@ -3,9 +3,10 @@
 The manuscript cites exactly one numbered supplementary item, **Supplementary
 Table S1**, in the last paragraph of section 2.10:
 
-> "Only nine EDC exposures could be instrumented at all, contributing 47 variants
-> and 32 testable exposure–outcome pairs … The per-pair estimates are given in
-> Supplementary Table S1."
+> "Only nine EDC exposures could be instrumented at all, giving 13 distinct
+> variants and 32 testable exposure–outcome pairs (47 instrument entries once
+> each variant is reused across the four outcomes) … The per-pair estimates are
+> given in Supplementary Table S1."
 
 This folder holds that table, under exactly that number. No other supplementary
 table or figure is cited anywhere in the text, so there is no S2 or Figure S1 to
@@ -43,8 +44,33 @@ P = 0.0079), MEHHP–hypothyroidism (β = −0.539, P = 0.027) and PFOS–FT4
 The PFOS–FT4 pair is the one whose direction matches the toxicological
 literature. These are the numbers quoted in section 2.10 and in the Discussion.
 
+## Counting the instruments
+
+The 32 pairs come from 13 variants, because most exposures were instrumented by
+one to three variants and each variant is reused across the four outcomes:
+
+| Exposure | Testable pairs | Distinct variants |
+|---|---|---|
+| MECPP | 4 | 3 |
+| MEHHP | 4 | 1 |
+| MEHP | 4 | 1 |
+| MEOHP | 4 | 1 |
+| MMP | 1 | 1 |
+| MethylParaben | 3 | 1 |
+| PFOA | 4 | 1 |
+| PFOS | 4 | 2 |
+| PropylParaben | 4 | 2 |
+| **Total** | **32** | **13** |
+
+Summing `n SNP` over the 32 pairs gives 47, the figure the sheet note reports.
+The two numbers count different things and both are correct; the Methods of the
+manuscript uses the 13-variant count for the instrument set and this table for
+the per-pair estimates.
+
 ## Regenerating
 
-The table is a direct subset of `b1_edc_thyroid_mr.csv` (all rows with
-`nsnp > 0`). The block is reproduced, with numerators and denominators printed,
-by section 9 of `05_脚本/verify_numbers.py`.
+The table is a direct subset of the exposure-arm MR output (all rows with at
+least one instrument). That intermediate file is not part of this release; the
+published table is the authoritative record of the estimates. The block is
+re-printed, with numerators and denominators, by section 10 of
+`05_脚本/verify_numbers.py`.

@@ -34,7 +34,8 @@ If you use this code or these tables, please cite the manuscript above, or this 
   03_复现/               FinnGen R12 consistency check and negative controls
   04_组织/               GTEx tissue panel and the three thyroid eQTL processings
   05_位点/               locus dissection: LD panel, joint GLS models, window colocalisation
-  06_表达与单细胞/       expression, single-cell, co-expression, CTD records, GEO checks
+  06_表达与单细胞/       expression, cross-tissue eQTL, single-cell, co-expression, CTD records, GEO checks
+                         (SCRN2_rs6503875_GTEx_tissues.csv = the 47-tissue lookup behind section 2.9)
   07_结构/               docking scores, MD metrics, per-residue contacts, MM-GBSA, pockets
   08_平面与跨族裔/       TSH–FT4 plane, power-matched subset, cross-ancestry meta-analysis
   09_五层/               five-layer region counts and bitmask combinations
@@ -42,7 +43,7 @@ If you use this code or these tables, please cite the manuscript above, or this 
 05_脚本/                 analysis code
   10_筛查 … 90_图表/     numbered by analysis block, mirroring 04_数据
   verify_numbers.py      regenerates every reported percentage and prints numerator/denominator
-  核对报告.txt           output of verify_numbers.py
+  verification_report.txt  output of verify_numbers.py
   recompute_md_contacts.py  per-residue contact frequencies from the MD trajectories
 
 06_补充材料/             Supplementary Table S1 (exposure-arm MR, 32 pairs; CSV + XLSX)
@@ -67,11 +68,25 @@ statistic, the numerator and the denominator. Running it is the fastest way to c
 number in the manuscript:
 
 ```bash
-python 05_脚本/verify_numbers.py > 05_脚本/核对报告.txt
+python 05_脚本/verify_numbers.py        # writes 05_脚本/verification_report.txt
 ```
 
-Scripts are numbered in the order they were run within each block. Paths are resolved
-relative to the repository root, so the repository can be cloned anywhere.
+It needs only pandas, numpy and scipy, reads nothing outside this repository, and does
+not touch the network. If a number in the report disagrees with the manuscript, the
+report is the one computed from the deposited tables.
+
+Two other entry points are self-contained in the same way:
+`05_脚本/60_表达/39_gtex_cross_tissue_eqtl.py` regenerates the per-tissue table behind
+section 2.9 and Figure 8B (47 tissues, 49 with cis-eQTL data), and
+`05_脚本/recompute_md_contacts.py` recomputes per-residue contacts from a trajectory.
+
+The remaining scripts are numbered in the order they were run within each block and are
+archived as the analysis record rather than as one-click pipelines: several of them read
+the author's working directories (for example `D:/NewBeginning/MR1/DATA10`), because they
+were written against the internal archive from which this release was assembled. Those
+directories held the raw GWAS/eQTL downloads and are not redistributed; where a script
+matters for a specific table, its `BASE` line is the only edit needed, and every value it
+produced is already in `04_数据/`.
 
 ## Environment
 

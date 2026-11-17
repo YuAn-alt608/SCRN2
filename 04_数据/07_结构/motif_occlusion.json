@@ -1,5 +1,5 @@
 {
- "ligand": "D:\\NewBeginning\\MR1\\DATA10\\docking\\gromacs\\PFNA_docked.mol2",
+ "ligand": "PFNA_docked.mol2",
  "total_buried": 271.56809275392874,
  "apo_total": 19175.574357687576,
  "holo_total": 18904.006264933647,

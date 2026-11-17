@@ -44,7 +44,21 @@ If you use this code or these tables, please cite the manuscript above, or this 
   verify_numbers.py      regenerates every reported percentage and prints numerator/denominator
   核对报告.txt           output of verify_numbers.py
   recompute_md_contacts.py  per-residue contact frequencies from the MD trajectories
+
+06_补充材料/             Supplementary Table S1 (exposure-arm MR, 32 pairs; CSV + XLSX)
+
+07_结构模型/             structures and simulation settings for the structural arm
+  pdb/                   AlphaFold2 SCRN2 model, PFNA and T3 docked complexes, ligand poses
+  mdp/                   em / nvt / npt / production .mdp; raw/ holds the two mdout.mdp dumps
 ```
+
+## Supplementary material
+
+The manuscript cites one numbered supplementary item, **Supplementary Table S1**
+(section 2.10, per-pair estimates for the nine instrumentable EDC exposures). It
+is `06_补充材料/Table_S1_EDC_exposure_arm_MR.{csv,xlsx}`; see the README in that
+folder for the column definitions. Nothing in the text cites an S2 or a Figure S1,
+so the numbering matches one-to-one.
 
 ## Reproducing the reported numbers
 

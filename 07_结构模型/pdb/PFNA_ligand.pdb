@@ -1,0 +1,30 @@
+REMARK ligand PFNA extracted from docking MODEL 1
+HETATM    1   C  PFNA A   1       7.415  12.571 -13.807  1.00  0.00           C
+HETATM    2   F  PFNA A   1       7.063  11.636 -14.741  1.00  0.00           F
+HETATM    3   F  PFNA A   1       8.350  13.353 -14.419  1.00  0.00           F
+HETATM    4   C  PFNA A   1       6.205  13.403 -13.434  1.00  0.00           C
+HETATM    5   F  PFNA A   1       6.026  14.388 -14.358  1.00  0.00           F
+HETATM    6   F  PFNA A   1       6.435  14.039 -12.252  1.00  0.00           F
+HETATM    7   C  PFNA A   1       4.957  12.545 -13.347  1.00  0.00           C
+HETATM    8   F  PFNA A   1       4.571  12.141 -14.594  1.00  0.00           F
+HETATM    9   F  PFNA A   1       5.211  11.398 -12.654  1.00  0.00           F
+HETATM   10   C  PFNA A   1       3.883  13.373 -12.663  1.00  0.00           C
+HETATM   11   O  PFNA A   1       3.366  14.394 -13.093  1.00  0.00           O
+HETATM   12   O  PFNA A   1       3.484  12.884 -11.467  1.00  0.00           O
+HETATM   14   C  PFNA A   1       8.054  11.831 -12.639  1.00  0.00           C
+HETATM   15   F  PFNA A   1       7.608  12.350 -11.462  1.00  0.00           F
+HETATM   16   F  PFNA A   1       7.618  10.536 -12.662  1.00  0.00           F
+HETATM   17   C  PFNA A   1       9.561  11.825 -12.622  1.00  0.00           C
+HETATM   18   F  PFNA A   1      10.012  11.632 -13.898  1.00  0.00           F
+HETATM   19   F  PFNA A   1      10.009  13.062 -12.263  1.00  0.00           F
+HETATM   20   C  PFNA A   1      10.216  10.779 -11.722  1.00  0.00           C
+HETATM   21   F  PFNA A   1       9.416  10.484 -10.663  1.00  0.00           F
+HETATM   22   F  PFNA A   1      10.233   9.620 -12.473  1.00  0.00           F
+HETATM   23   C  PFNA A   1      11.643  11.042 -11.272  1.00  0.00           C
+HETATM   24   F  PFNA A   1      11.666  12.009 -10.315  1.00  0.00           F
+HETATM   25   F  PFNA A   1      12.345  11.568 -12.332  1.00  0.00           F
+HETATM   26   C  PFNA A   1      12.384   9.792 -10.828  1.00  0.00           C
+HETATM   27   F  PFNA A   1      11.590   8.712 -10.706  1.00  0.00           F
+HETATM   28   F  PFNA A   1      13.370   9.456 -11.693  1.00  0.00           F
+HETATM   29   F  PFNA A   1      12.975   9.978  -9.621  1.00  0.00           F
+END

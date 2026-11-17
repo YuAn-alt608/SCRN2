@@ -1,0 +1,68 @@
+; ============================================================================
+; md_production.mdp — unrestrained production run, 10 ns (2 fs x 5,000,000 steps)
+;
+; PROVENANCE. Every value below is taken from the run itself: GROMACS writes the
+; full input parameter set to mdout.mdp at start-up, and mdout.mdp from the PFNA
+; and T3 runs are included verbatim under mdp/raw/. The two runs differ only in
+; the ligand (29 atoms for PFNA, 27 for T3); this file is the PFNA set.
+;
+; Frame count: nstxout-compressed = 5000 over 5,000,000 steps gives 1,001 frames,
+; which is the number of frames used for the contact, residence and diffusion
+; statistics and for the 201-frame MM-GBSA average.
+;
+; NOTE: 5,000,000 steps, not the 50,000,000 in the superseded template that sits
+; in the docking archive (md_setup/md.mdp). That template also specifies
+; Nose-Hoover / Parrinello-Rahman at 300 K; it was never used for the reported
+; trajectories.
+; ============================================================================
+
+integrator               = md
+dt                       = 0.002
+nsteps                   = 5000000         ; 10 ns
+continuation             = yes
+
+; --- thermostat and barostat at 310 K / 1 bar --------------------------------
+tcoupl                   = V-rescale
+tc-grps                  = Solute Solvent
+tau-t                    = 1.0 1.0
+ref-t                    = 310 310
+nsttcouple               = -1
+pcoupl                   = C-rescale
+pcoupltype               = isotropic
+tau-p                    = 5.0
+ref-p                    = 1.0
+compressibility          = 4.5e-5
+nstpcouple               = -1
+
+; --- neighbour search and non-bonded treatment -------------------------------
+cutoff-scheme            = Verlet
+nstlist                  = 20
+pbc                      = xyz
+verlet-buffer-tolerance  = 0.005
+rlist                    = 1.0
+coulombtype              = PME
+rcoulomb                 = 1.0
+fourierspacing           = 0.14
+vdwtype                  = cutoff
+rvdw                     = 1.0
+DispCorr                 = no
+
+; --- constraints --------------------------------------------------------------
+constraints              = h-bonds
+constraint-algorithm     = lincs
+lincs-order              = 4
+lincs-iter               = 1
+
+; --- output -------------------------------------------------------------------
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstxout-compressed       = 5000
+nstlog                   = 5000
+nstenergy                = 1000
+nstcalcenergy            = 100
+
+comm-mode                = Linear
+nstcomm                  = 100
+refcoord-scaling         = com
+gen-vel                  = no

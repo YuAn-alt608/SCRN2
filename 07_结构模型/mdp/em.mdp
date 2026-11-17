@@ -1,0 +1,47 @@
+; ============================================================================
+; em.mdp — energy minimisation, SCRN2 (AlphaFold2 Q96FV2) + ligand
+;
+; PROVENANCE. The .mdp file used in the run was not kept in the archive; the
+; values below are those echoed in em.log ("Input Parameters", GROMACS 2022.5).
+; Parameters not listed were left at GROMACS defaults. Together with nvt.mdp,
+; npt.mdp and md_production.mdp this reproduces every stage reported in the
+; Methods. Systems: PFNA (53,696 atoms, 6,489 solute) and T3 (same protein).
+; ============================================================================
+
+integrator               = steep
+dt                       = 0.001
+nsteps                   = 20000
+
+; --- neighbour search and non-bonded treatment -------------------------------
+cutoff-scheme            = Verlet
+nstlist                  = 20
+pbc                      = xyz
+verlet-buffer-tolerance  = 0.005
+rlist                    = 1.05
+coulombtype              = PME
+rcoulomb                 = 1.0
+fourierspacing           = 0.14
+vdwtype                  = cutoff
+rvdw                     = 1.0
+DispCorr                 = no
+
+; --- no coupling during minimisation -----------------------------------------
+tcoupl                   = no
+nsttcouple               = -1
+pcoupl                   = no
+nstpcouple               = -1
+
+; --- output -------------------------------------------------------------------
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 1000
+nstenergy                = 1000
+
+; --- constraints and communication --------------------------------------------
+constraint-algorithm     = lincs
+lincs-order              = 4
+lincs-iter               = 1
+comm-mode                = Linear
+nstcomm                  = 100
+refcoord-scaling         = no

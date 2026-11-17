@@ -1,0 +1,55 @@
+; ============================================================================
+; npt.mdp — NPT equilibration, 200 ps (2 fs x 100,000 steps), position-restrained
+;
+; PROVENANCE. Values echoed in npt.log ("Input Parameters", GROMACS 2022.5).
+; The barostat is C-rescale (stochastic cell rescaling), not Parrinello-Rahman;
+; this is what the production stage also used, and what the Methods state.
+; ============================================================================
+
+integrator               = md
+dt                       = 0.002
+nsteps                   = 100000         ; 200 ps
+continuation             = yes
+
+; --- thermostat and barostat at 310 K / 1 bar --------------------------------
+tcoupl                   = V-rescale
+tc-grps                  = Solute Solvent
+tau-t                    = 1.0 1.0
+ref-t                    = 310 310
+nsttcouple               = 10
+pcoupl                   = C-rescale
+pcoupltype               = isotropic
+tau-p                    = 2.0
+ref-p                    = 1.0
+compressibility          = 4.5e-5
+nstpcouple               = 10
+
+; --- neighbour search and non-bonded treatment -------------------------------
+cutoff-scheme            = Verlet
+nstlist                  = 20
+pbc                      = xyz
+verlet-buffer-tolerance  = 0.005
+rlist                    = 1.025
+coulombtype              = PME
+rcoulomb                 = 1.0
+fourierspacing           = 0.14
+vdwtype                  = cutoff
+rvdw                     = 1.0
+DispCorr                 = no
+
+; --- constraints --------------------------------------------------------------
+constraints              = h-bonds
+constraint-algorithm     = lincs
+lincs-order              = 4
+lincs-iter               = 1
+
+; --- output -------------------------------------------------------------------
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 1000
+nstenergy                = 5000
+
+comm-mode                = Linear
+nstcomm                  = 100
+refcoord-scaling         = com

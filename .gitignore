@@ -21,3 +21,10 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# internal planning / review notes
+00_README.md
+01_故事线_*.md
+02_证据对照表.md
+06_图表规格.md
+09_v7*.md

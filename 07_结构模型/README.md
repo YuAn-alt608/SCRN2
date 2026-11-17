@@ -12,9 +12,8 @@ run settings needed to reproduce them.
 |---|---|---|
 | `AF-SCRN2-Q96FV2.pdb` | AlphaFold2 model of human SCRN2 (UniProt Q96FV2), chain A, residues 1–425 | 3,277 |
 | `PFNA_complex.pdb` | **The docked complex**: same receptor + PFNA as chain B (residue `PFN`, residue 1). Geometry used for the PLIP contact analysis and as the MD starting structure | 3,277 + 29 |
-| `T3_complex.pdb` | Same receptor + T3 as chain B (residue `T3X`) — the comparator ligand | 3,277 + 27 |
 | `PFNA_docked_pose.pdb` | Ligand-only coordinates of the top-scoring blind-docking pose (no receptor) | 29 |
-| `PFNA_ligand.pdb`, `T3_ligand.pdb` | Input ligand geometries (RDKit ETKDGv3 → MMFF94, AM1-BCC charges, GAFF2 typing) | 28 / 26 |
+| `PFNA_ligand.pdb` | Input ligand geometry (RDKit ETKDGv3 → MMFF94, AM1-BCC charges, GAFF2 typing) | 28 |
 
 Notes on the coordinates:
 
@@ -40,14 +39,14 @@ All stages: GROMACS 2022.5, amber99sb-ildn + TIP3P, PME, Verlet cutoff scheme,
 h-bonds constrained with LINCS, V-rescale thermostat at **310 K**, C-rescale
 barostat at 1 bar, coupling groups `Solute` / `Solvent`.
 
-`mdp/raw/` holds the two `mdout.mdp` files that GROMACS writes at start-up. They
-are the complete, verbatim parameter sets of the PFNA and T3 production runs, so
-they can be used to check any line of the condensed `md_production.mdp`.
+`mdp/raw/` holds the `mdout.mdp` file that GROMACS writes at start-up: the
+complete, verbatim parameter set of the PFNA production run, which can be used to
+check any line of the condensed `md_production.mdp`.
 
 ### Provenance, and one superseded template
 
 The condensed `.mdp` files were rebuilt from the run logs (`em.log`, `nvt.log`,
-`npt.log` and the two `mdout.mdp` dumps), because the original `.mdp` files were
+`npt.log` and the `mdout.mdp` dump), because the original `.mdp` files were
 not kept in the working archive. Each file says which log it came from; every
 value is one that the log records, and unlisted parameters stayed at GROMACS
 defaults.

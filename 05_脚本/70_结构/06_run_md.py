@@ -1,8 +1,8 @@
 """06 · 平衡与生产 MD：NVT 100 ps -> NPT 200 ps -> 生产 MD
 
 用法：
-    python scripts/06_run_md.py T3            # 全套
-    python scripts/06_run_md.py T3 nvt        # 只跑某一段
+    python scripts/06_run_md.py PFNA            # 全套
+    python scripts/06_run_md.py PFNA nvt        # 只跑某一段
 """
 import subprocess
 import sys

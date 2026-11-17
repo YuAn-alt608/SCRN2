@@ -192,5 +192,5 @@ def build_one(name):
 
 
 if __name__ == "__main__":
-    for nm in (sys.argv[1:] or ["T3", "PFNA"]):
+    for nm in (sys.argv[1:] or ["PFNA"]):
         build_one(nm)

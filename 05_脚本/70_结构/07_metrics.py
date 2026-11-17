@@ -267,6 +267,6 @@ def anal(name, dt_ps=10):
 
 
 if __name__ == "__main__":
-    for nm in (sys.argv[1:] or ["T3", "PFNA"]):
+    for nm in (sys.argv[1:] or ["PFNA"]):
         print(f"=== {nm} ===")
         anal(nm)

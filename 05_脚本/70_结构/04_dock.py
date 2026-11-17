@@ -1,4 +1,4 @@
-"""04 · 盲对接：让 T3 与 PFNA 自己在 SCRN2 表面找位置
+"""04 · 盲对接：让 PFNA 自己在 SCRN2 表面找位置
 
 没有共晶结构、没有已知位点，所以不能"指定口袋再对接"——那等于把结论写进起点。
 这里做的是全局刚性对接：
@@ -87,7 +87,7 @@ def main():
     print(f"位点中心候选 {len(centers)} 个（取体积前 40 个口袋质心）")
 
     out = {}
-    for name in ("T3", "PFNA"):
+    for name in ("PFNA",):
         pos, el = read_pdb(LIG / f"{name}.pdb")
         lig_el = el
         com0 = pos.mean(0)

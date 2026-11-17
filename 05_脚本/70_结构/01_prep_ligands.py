@@ -1,12 +1,10 @@
 #!/usr/bin/env python
-"""01 · 配体准备：PFNA 与 T3 的 3D 结构 + GAFF2/AM1-BCC 参数 -> GROMACS 拓扑
+"""01 · 配体准备：PFNA 的 3D 结构 + GAFF2/AM1-BCC 参数 -> GROMACS 拓扑
 
 电荷态选择（这是必须交代的建模决定）：
   PFNA  全氟壬酸，pKa ~0.5，生理 pH 下完全去质子化 -> 羧酸根，净电荷 -1
-  T3    三碘甲状腺原氨酸，生理 pH 下以两性离子存在（-COO⁻ / -NH3⁺），净电荷 0
 
-两者净电荷不同是真实的物理差别，不做"人为对齐"；MM-GBSA 里的静电项差异
-本来就该包含这部分，报告里会说明，而不是把它当误差抹掉。
+只模拟一个配体，因此没有对照配体，也没有需要对齐的电荷态差异。
 """
 from pathlib import Path
 import subprocess, os, sys, shutil
@@ -26,8 +24,6 @@ SPECIES = {
     # name: (SMILES, net charge, 说明)
     "PFNA": ("[O-]C(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F", -1,
              "perfluorononanoic acid, carboxylate"),
-    "T3":   ("[NH3+][C@@H](Cc1cc(I)c(Oc2cc(I)c(O)cc2)c(I)c1)C(=O)[O-]", 0,
-             "3,3',5-triiodo-L-thyronine, zwitterion"),
 }
 
 

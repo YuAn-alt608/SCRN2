@@ -58,7 +58,7 @@ for oc in ["TSH", "Total T4", "Hypothyroidism"]:
 for g in PATTERN:
     if g in info:
         if not info[g]["tier"]:
-            info[g]["tier"] = "T3_control"
+            info[g]["tier"] = "Tier3_control"
         info[g]["tier"] = info[g]["tier"] + "|control"
 
 # 只保留被选中的

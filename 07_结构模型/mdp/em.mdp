@@ -5,7 +5,7 @@
 ; values below are those echoed in em.log ("Input Parameters", GROMACS 2022.5).
 ; Parameters not listed were left at GROMACS defaults. Together with nvt.mdp,
 ; npt.mdp and md_production.mdp this reproduces every stage reported in the
-; Methods. Systems: PFNA (53,696 atoms, 6,489 solute) and T3 (same protein).
+; Methods. System: PFNA (53,696 atoms, 6,489 solute).
 ; ============================================================================
 
 integrator               = steep

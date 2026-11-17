@@ -24,10 +24,9 @@ LIG = ROOT / "ligands"
 AMBER = Path("D:/Tools/ChimeraX/bin/amber20")
 CX = Path("D:/Tools/ChimeraX/bin/ChimeraX.exe")
 
-# 净电荷：PFNA 生理 pH 下完全去质子化(-1)；T3 以两性离子存在(0)
+# 净电荷：PFNA 生理 pH 下完全去质子化(-1)
 SPECIES = {
     "PFNA": ("[O-]C(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F", -1),
-    "T3":   ("[NH3+][C@@H](Cc1cc(I)c(Oc2cc(I)c(O)cc2)c(I)c1)C(=O)[O-]", 0),
 }
 
 MASS = {"C": 12.011, "N": 14.007, "O": 15.999, "F": 18.998,

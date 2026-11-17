@@ -1,7 +1,7 @@
 """08 · MM-GBSA（单轨迹法，OBC2 隐式溶剂，无熵项）
 
 必须用 ChimeraX 自带的 Python 运行（本机唯一带 openmm / parmed 的解释器）：
-    D:\\Tools\\ChimeraX\\bin\\python.exe scripts\\08_mmgbsa.py T3 PFNA
+    D:\\Tools\\ChimeraX\\bin\\python.exe scripts\\08_mmgbsa.py PFNA
 
 公式：
     dG_bind = <dE_vdW> + <dE_elec> + <dG_GB> + <dG_np>
@@ -44,8 +44,8 @@ def mbondi2_radii(elem, bonds):
     """Amber mbondi2 半径集——igb=5 (OBC-II) 的配套半径。
 
     必须用它，不能用纯 Bondi：mbondi2 把与氧相连的氢缩到 0.80 A、与氮相连的 1.30 A。
-    T3 有两个酚羟基、一个铵基，PFNA 一个都没有，用 Bondi 会让两者去溶剂化惩罚
-    出现不对称偏差，直接污染 ΔG_GB 的可比性。
+    PFNA 的两个羧基氧直接参与静电项，用 Bondi 会让去溶剂化惩罚与 OBC-II 模型不自洽，
+    直接污染 ΔG_GB。
     """
     from collections import defaultdict
     rad = np.array([RADII.get(str(e), 1.70) for e in elem], dtype=float)
@@ -223,5 +223,5 @@ def _n_lig(top):
 
 
 if __name__ == "__main__":
-    for nm in (sys.argv[1:] or ["T3", "PFNA"]):
+    for nm in (sys.argv[1:] or ["PFNA"]):
         run(nm)

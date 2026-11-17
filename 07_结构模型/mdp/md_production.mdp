@@ -2,9 +2,8 @@
 ; md_production.mdp — unrestrained production run, 10 ns (2 fs x 5,000,000 steps)
 ;
 ; PROVENANCE. Every value below is taken from the run itself: GROMACS writes the
-; full input parameter set to mdout.mdp at start-up, and mdout.mdp from the PFNA
-; and T3 runs are included verbatim under mdp/raw/. The two runs differ only in
-; the ligand (29 atoms for PFNA, 27 for T3); this file is the PFNA set.
+; full input parameter set to mdout.mdp at start-up, and that dump from the PFNA
+; run is included verbatim under mdp/raw/.
 ;
 ; Frame count: nstxout-compressed = 5000 over 5,000,000 steps gives 1,001 frames,
 ; which is the number of frames used for the contact, residence and diffusion

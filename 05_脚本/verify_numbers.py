@@ -330,11 +330,8 @@ say("  protein      : %s" % h[h.molecule == "protein"].direction.value_counts().
 # ------------------------------------------------------------- 11 structure
 title("11 Structural arm: docking and MD")
 dp = pd.read_csv(P("07_结构/dock_PFNA.csv"))
-dt = pd.read_csv(P("07_结构/dock_T3.csv"))
-say("best blind-docking score : T3 %s / PFNA %s kcal/mol" % (f(dt.energy.iloc[0]), f(dp.energy.iloc[0])))
-c1 = dp[["cx", "cy", "cz"]].iloc[0].values
-c2 = dt[["cx", "cy", "cz"]].iloc[0].values
-say("distance between the two best-pose centroids : %s A" % f(np.linalg.norm(c1 - c2), 1))
+say("best blind-docking score : PFNA %s kcal/mol; mean of top ten %s kcal/mol"
+    % (f(dp.energy.iloc[0]), f(dp.energy.iloc[:10].mean())))
 say("")
 say(pd.read_csv(P("07_结构/summary_table.csv")).to_string(index=False))
 say("")

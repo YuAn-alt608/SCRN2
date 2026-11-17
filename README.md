@@ -50,8 +50,8 @@ If you use this code or these tables, please cite the manuscript above, or this 
 06_补充材料/             Supplementary Tables S1 (exposure-arm MR) and S2 (five layers); CSV + XLSX
 
 07_结构模型/             structures and simulation settings for the structural arm
-  pdb/                   AlphaFold2 SCRN2 model, PFNA and T3 docked complexes, ligand poses
-  mdp/                   em / nvt / npt / production .mdp; raw/ holds the two mdout.mdp dumps
+  pdb/                   AlphaFold2 SCRN2 model, the PFNA docked complex, ligand poses
+  mdp/                   em / nvt / npt / production .mdp; raw/ holds the mdout.mdp dump
 ```
 
 ## Supplementary material

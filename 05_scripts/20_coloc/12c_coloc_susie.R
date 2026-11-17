@@ -98,8 +98,18 @@ build_d2 <- function(d, R, cfg) {
 }
 
 ## returns list(method, n1, n2, nsnps, sm) or NULL
-## tries LD shrinkage 0 / 0.05 in turn; both traits must use the same shrunk
-## matrix, otherwise coloc is not self-consistent
+## Four attempts in a fixed order: LD shrinkage 0 then 0.05, each on the full SNP
+## set (pass 1) and again on the LD-pruned set (pass 2); a pair is returned as
+## method "susie_shrink*" at the first attempt that yields a coloc.susie summary,
+## and only after all four fail does it fall back to abf elsewhere. Both traits
+## must use the same shrunk matrix, otherwise coloc is not self-consistent.
+## A third shrinkage level, 0.15, was listed here in an earlier comment and is the
+## only point on which this file was ever ambiguous. The grid in the code below is
+## {0, 0.05}; the internal archive from which this release was assembled retains two
+## rows labelled susie_shrink0.15 (CDKN1B/HYPO, PRDX5/HYPO), so a version of this
+## script briefly carried the third level. No susie output is redistributed here and
+## none of it feeds a table in 04_data or a number in the manuscript, so the grid is
+## stated as the code has it, and the two historical rows are left where they are.
 coloc_pair <- function(d, R, cfg) {
   lams <- c(0, 0.05)
   for (pass in 1:2) {

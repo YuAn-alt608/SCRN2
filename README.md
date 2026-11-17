@@ -12,6 +12,19 @@ numbers in the manuscript are taken.
 
 Zizheng Yuan — University of Lisbon, Lisbon, Portugal
 
+## Citation
+
+If you use this code or these tables, please cite the manuscript above, or this repository:
+
+```bibtex
+@software{yuan_scrn2_2026,
+  author = {Yuan, Zizheng},
+  title  = {SCRN2 / thyroid set-point: analysis code and derived result tables},
+  year   = {2026},
+  url    = {https://github.com/YuAn-alt608/SCRN2}
+}
+```
+
 ## Layout
 
 ```

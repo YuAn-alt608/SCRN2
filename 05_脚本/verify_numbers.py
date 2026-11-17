@@ -332,6 +332,13 @@ title("11 Structural arm: docking and MD")
 dp = pd.read_csv(P("07_结构/dock_PFNA.csv"))
 say("best blind-docking score : PFNA %s kcal/mol; mean of top ten %s kcal/mol"
     % (f(dp.energy.iloc[0]), f(dp.energy.iloc[:10].mean())))
+C = dp[["cx", "cy", "cz"]].values[:10]
+_dbest = np.linalg.norm(C - C[0], axis=1)[1:]
+iu = np.triu_indices(len(C), 1)
+_dpair = np.linalg.norm(C[iu[0]] - C[iu[1]], axis=1)
+say("pose convergence        : all ten centroids within %s A of the best pose;"
+    " widest separation between any two %s A"
+    % (f(_dbest.max(), 2), f(max(_dpair), 2)))
 say("")
 say(pd.read_csv(P("07_结构/summary_table.csv")).to_string(index=False))
 say("")
@@ -353,7 +360,7 @@ title("12 Values quoted from external files or entered in plotting scripts")
 say("These cannot be recomputed from 04_数据/; each is named where it comes from.")
 say("  power-matched counts (Figure 7D)        : 04_数据/08_平面与跨族裔/s08b_power.txt")
 say("  GEO log2 fold changes (Figure 8E)       : 04_数据/06_表达与单细胞/SCRN2_geo_expression_validation.txt")
-say("  threshold sensitivity (Figure 5D)       : entered in 05_脚本/80_图表/, author-reported")
+say("  threshold sensitivity (Figure 5D)       : recomputed offline by 05_脚本/90_图表/42_five_layer_sensitivity.py")
 say("  South Asian and second European cohort  : external GWAS, accession in Table 1")
 say("  MD trajectory-derived metrics           : 04_数据/07_结构/ (trajectories not redistributed)")
 

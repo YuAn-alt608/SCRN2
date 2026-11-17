@@ -3,7 +3,7 @@
 SCRN2 / thyroid set-point - numerical verification report
 ==============================================================================
 repository root : D:\NewBeginning\MR1\DATA1
-generated       : 2026-11-18 05:59
+generated       : 2026-11-18 06:13
 
 ==============================================================================
 1  Screen input: EDCs -> genes -> tested pairs
@@ -350,6 +350,7 @@ curated human EDC records for SCRN2 : 23
 11 Structural arm: docking and MD
 ==============================================================================
 best blind-docking score : PFNA -5.78 kcal/mol; mean of top ten -4.90 kcal/mol
+pose convergence        : all ten centroids within 2.88 A of the best pose; widest separation between any two 4.51 A
 
                metric          PFNA
          配体 RMSD (nm) 0.474 ± 0.053
@@ -409,7 +410,7 @@ motif occlusion in the docked pose (total buried 271.6 A^2):
 These cannot be recomputed from 04_数据/; each is named where it comes from.
   power-matched counts (Figure 7D)        : 04_数据/08_平面与跨族裔/s08b_power.txt
   GEO log2 fold changes (Figure 8E)       : 04_数据/06_表达与单细胞/SCRN2_geo_expression_validation.txt
-  threshold sensitivity (Figure 5D)       : entered in 05_脚本/80_图表/, author-reported
+  threshold sensitivity (Figure 5D)       : recomputed offline by 05_脚本/90_图表/42_five_layer_sensitivity.py
   South Asian and second European cohort  : external GWAS, accession in Table 1
   MD trajectory-derived metrics           : 04_数据/07_结构/ (trajectories not redistributed)
 

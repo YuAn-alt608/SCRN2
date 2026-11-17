@@ -3,7 +3,7 @@
 SCRN2 / thyroid set-point - numerical verification report
 ==============================================================================
 repository root : D:\NewBeginning\MR1\DATA1
-generated       : 2026-11-18 00:40
+generated       : 2026-11-18 00:46
 
 ==============================================================================
 1  Screen input: EDCs -> genes -> tested pairs
@@ -105,9 +105,15 @@ FinnGen R12 阴性对照（结局 E4_HYTHY_AI_STRICT）
   Hashimoto thyroiditis    testable   13 ; expected direction 92.3% (12/13) ; recovered 69.2% (9/13)
   Hypothyroidism           testable  314 ; expected direction 94.3% (296/314) ; recovered 66.9% (210/314)
   TSH                      testable  325 ; expected direction 74.5% (242/325) ; recovered 35.1% (114/325)
-  Total T4                 testable   57 ; expected direction 33.3% (19/57) ; recovered 12.3% (7/57)
+  Total T4                 testable   57 ; expected direction 66.7% (38/57) ; recovered 33.3% (19/57)
 
 discovery-FinnGen correlation (r) by outcome: {'Hashimoto thyroiditis': '0.91', 'Hypothyroidism': '0.91', 'TSH': '0.42', 'Total T4': '0.09'}
+
+pooled over outcomes, by evidence tier (section 2.2):
+  A_multi        testable  24 ; recovered 70.8% (17/24) ; expected direction 83.3% (20/24)
+  B_strong       testable  40 ; recovered 50.0% (20/40) ; expected direction 72.5% (29/40)
+  C_distinct     testable 407 ; recovered 50.6% (206/407) ; expected direction 83.5% (340/407)
+  D_unsupported  testable 238 ; recovered 45.8% (109/238) ; expected direction 83.6% (199/238)
 
 ==============================================================================
 4  Colocalisation and the circularity audit

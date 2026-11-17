@@ -146,8 +146,8 @@ for oc, g in fin.groupby("outcome"):
     testable = g[g.p_fg.notna()] if "p_fg" in g else g.iloc[:0]
     if not len(testable):
         continue
-    same = int(testable.sign_ok.sum())
-    ok = int(testable.replicated.sum())
+    same = int(testable.physio_ok.sum())
+    ok = int(testable.replicated_physio.sum())
     say("  %-24s testable %4d ; expected direction %s ; recovered %s"
         % (oc, len(testable), pct(same, len(testable)), pct(ok, len(testable))))
 r = {}
@@ -156,6 +156,19 @@ for oc, g in fin.dropna(subset=["b_orig", "b_fg"]).groupby("outcome"):
         r[oc] = stats.pearsonr(g.b_orig, g.b_fg).statistic
 say("")
 say("discovery-FinnGen correlation (r) by outcome: %s" % {k: f(v, 2) for k, v in r.items()})
+
+say("")
+say("pooled over outcomes, by evidence tier (section 2.2):")
+mp = {"TSH": "TSH", "Hypothyroidism": "HYPO", "Total T4": "T4", "Hashimoto thyroiditis": "HASH"}
+tt = tiers[["gene", "outcome", "tier"]].copy()
+tt["oc2"] = tt.outcome.map(mp)
+ff = fin.rename(columns={"oc": "oc2"})[["gene", "oc2", "p_fg", "physio_ok", "replicated_physio"]]
+mm = ff.merge(tt, on=["gene", "oc2"], how="inner")
+mm = mm[mm.p_fg.notna()]
+for tier, g in mm.groupby("tier"):
+    say("  %-14s testable %3d ; recovered %s ; expected direction %s"
+        % (tier, len(g), pct(int(g.replicated_physio.sum()), len(g)),
+           pct(int(g.physio_ok.sum()), len(g))))
 
 # ------------------------------------------------------------- 4 coloc
 title("4  Colocalisation and the circularity audit")

@@ -35,10 +35,11 @@ If you use this code or these tables, please cite the manuscript above, or this 
   04_组织/               GTEx tissue panel and the three thyroid eQTL processings
   05_位点/               locus dissection: LD panel, joint GLS models, window colocalisation
   06_表达与单细胞/       expression, cross-tissue eQTL, single-cell, co-expression, CTD records, GEO checks
-                         (SCRN2_rs6503875_GTEx_tissues.csv = the 47-tissue lookup behind section 2.9)
+                         SCRN2_rs6503875_GTEx_tissues.csv = the 47-tissue lookup behind section 2.9
+                         cross_tissue_coherence_panel.csv = the 71-gene panel behind layer 4 of Figure 5
   07_结构/               docking scores, MD metrics, per-residue contacts, MM-GBSA, pockets
   08_平面与跨族裔/       TSH–FT4 plane, power-matched subset, cross-ancestry meta-analysis
-  09_五层/               five-layer region counts and bitmask combinations
+  09_五层/               five-layer membership, region counts and threshold sensitivity
 
 05_脚本/                 analysis code
   10_筛查 … 90_图表/     numbered by analysis block, mirroring 04_数据
@@ -46,7 +47,7 @@ If you use this code or these tables, please cite the manuscript above, or this 
   verification_report.txt  output of verify_numbers.py
   recompute_md_contacts.py  per-residue contact frequencies from the MD trajectories
 
-06_补充材料/             Supplementary Table S1 (exposure-arm MR, 32 pairs; CSV + XLSX)
+06_补充材料/             Supplementary Tables S1 (exposure-arm MR) and S2 (five layers); CSV + XLSX
 
 07_结构模型/             structures and simulation settings for the structural arm
   pdb/                   AlphaFold2 SCRN2 model, PFNA and T3 docked complexes, ligand poses
@@ -55,11 +56,17 @@ If you use this code or these tables, please cite the manuscript above, or this 
 
 ## Supplementary material
 
-The manuscript cites one numbered supplementary item, **Supplementary Table S1**
-(section 2.10, per-pair estimates for the nine instrumentable EDC exposures). It
-is `06_补充材料/Table_S1_EDC_exposure_arm_MR.{csv,xlsx}`; see the README in that
-folder for the column definitions. Nothing in the text cites an S2 or a Figure S1,
-so the numbering matches one-to-one.
+The manuscript cites two numbered supplementary items, and both are here:
+
+- **Supplementary Table S1** — per-pair MR estimates for the nine instrumentable
+  EDC exposures (section 2.10):
+  `06_补充材料/Table_S1_EDC_exposure_arm_MR.{csv,xlsx}`
+- **Supplementary Table S2** — layer membership and threshold sensitivity for the
+  five evidence layers (Figure 5D, Table 3C, section 4.8):
+  `06_补充材料/Table_S2_five_layer_membership_and_sensitivity.xlsx`
+
+Nothing in the text cites an S3 or a Figure S1, so the numbering matches
+one-to-one. Column definitions are in the README in that folder.
 
 ## Reproducing the reported numbers
 
@@ -101,7 +108,10 @@ CTD (curated human chemical–gene interactions), eQTLGen, GTEx v8, eQTL Catalog
 (QTD000341), FinnGen R12 (E4_HYTHY_AI_STRICT), GWAS Catalog (GCST90572789, GCST90572790,
 GCST90572791, GCST90018855, GCST90448634, GCST90319321) and 1000 Genomes phase 3.
 
-Two figures depend on values that are entered in the plotting scripts rather than derived
-from a deposited table — the threshold-sensitivity result (Figure 5D), the power-matched
-counts (Figure 7D) and the GEO fold changes (Figure 8E). These are labelled
-"author-reported" in the manuscript and in the figure legends.
+Every number in Figure 5 is derived from `04_数据/09_五层/`, with the per-configuration
+gene lists in Supplementary Table S2 and the regeneration script in
+`05_脚本/90_图表/42_five_layer_sensitivity.py`; nothing in that figure is entered by hand.
+
+Two panels still carry values entered in the plotting scripts rather than derived from a
+deposited table — the power-matched counts (Figure 7D) and the GEO fold changes (Figure 8E).
+They are listed here as the remaining gap between the figures and the deposited tables.

@@ -129,9 +129,10 @@ for k in sorted(rc, key=int):
     g = rc[k]["genes"] if isinstance(rc[k], dict) else rc[k]
     say("  bitmask %-3s n=%-4d %s" % (k, len(g), ", ".join(g[:8]) + ("..." if len(g) > 8 else "")))
 say("")
-say("layer sizes reported in the text : 337 / 180 / 26 / 3 / 4")
+say("layer sizes reported in the text : 337 / 180 / 26 / 36 / 4")
 say("intersection of all five layers  : %s" % rc["31"]["genes"])
-say("pass layers 1-3, fail 4-5        : %s" % rc["7"]["genes"])
+say("pass layers 1-3, fail layer 4    : %s" % rc["7"]["genes"])
+say("pass layers 1-4, fail layer 5    : %s" % rc["15"]["genes"])
 n_occ = sum(1 for k, v in rc.items() if (v["genes"] if isinstance(v, dict) else v))
 say("non-empty combinations occupied  : %d of 31" % n_occ)
 

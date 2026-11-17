@@ -1,0 +1,6 @@
+configuration,PP_H4_min,target_rank_max,concordance_min,layer1_whole_blood_MR,layer2_thyroid_MR,layer3_colocalisation,layer4_cross_tissue,layer5_target,n_five_layer,five_layer_genes
+baseline,0.8,3,0.99,337,180,26,36,4,1,SCRN2
+PP.H4>=0.70,0.7,3,0.99,337,180,31,36,4,1,SCRN2
+top-5 targets,0.8,5,0.99,337,180,26,36,7,1,SCRN2
+concordance>=90%,0.8,3,0.9,337,180,26,43,4,1,SCRN2
+all three relaxed,0.7,5,0.9,337,180,31,43,7,1,SCRN2

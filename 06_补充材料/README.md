@@ -1,16 +1,13 @@
-# 06_补充材料 — Supplementary Table S1
+# 06_补充材料 — Supplementary Tables S1 and S2
 
-The manuscript cites exactly one numbered supplementary item, **Supplementary
-Table S1**, in the last paragraph of section 2.10:
+The manuscript cites two numbered supplementary items, and this folder holds both
+under exactly those numbers:
 
-> "Only nine EDC exposures could be instrumented at all, giving 13 distinct
-> variants and 32 testable exposure–outcome pairs (47 instrument entries once
-> each variant is reused across the four outcomes) … The per-pair estimates are
-> given in Supplementary Table S1."
+- **Supplementary Table S1** — the exposure-arm MR estimates (section 2.10).
+- **Supplementary Table S2** — five-layer membership and threshold sensitivity
+  (Figure 5D and Table 3C), cited in section 4.8.
 
-This folder holds that table, under exactly that number. No other supplementary
-table or figure is cited anywhere in the text, so there is no S2 or Figure S1 to
-match, and the numbering cannot collide.
+Nothing else carries a supplementary number, so the numbering cannot collide.
 
 ## Files
 
@@ -18,10 +15,12 @@ match, and the numbering cannot collide.
 |---|---|
 | `Table_S1_EDC_exposure_arm_MR.csv` | Machine-readable version; this is what `verify_numbers.py` reads |
 | `Table_S1_EDC_exposure_arm_MR.xlsx` | Submission version: title, header, notes, and a second sheet with the per-exposure instrument counts |
+| `Table_S2_five_layer_membership_and_sensitivity.xlsx` | Submission version: notes, sensitivity table, per-gene membership in every configuration, and the 71-gene coherence panel |
+| `Table_S2_sensitivity.csv` | Machine-readable sensitivity table (the numbers in Figure 5D) |
 
-Both contain the same 32 rows.
+Both S1 files contain the same 32 rows.
 
-## What the table contains
+## Table S1 — what it contains
 
 One row per testable exposure–outcome pair (9 EDC exposures × 4 outcomes, of
 which 32 pairs had at least one instrument):
@@ -44,7 +43,7 @@ P = 0.0079), MEHHP–hypothyroidism (β = −0.539, P = 0.027) and PFOS–FT4
 The PFOS–FT4 pair is the one whose direction matches the toxicological
 literature. These are the numbers quoted in section 2.10 and in the Discussion.
 
-## Counting the instruments
+### Counting the instruments
 
 The 32 pairs come from 13 variants, because most exposures were instrumented by
 one to three variants and each variant is reused across the four outcomes:
@@ -67,10 +66,31 @@ The two numbers count different things and both are correct; the Methods of the
 manuscript uses the 13-variant count for the instrument set and this table for
 the per-pair estimates.
 
+## Table S2 — what it contains
+
+Five layers on the TSH branch: whole-blood MR (337 genes), thyroid MR (180),
+colocalisation (26), cross-tissue coherence (36) and target assignment (4).
+Membership is encoded as a bitmask, `bitmask = L1 + 2*L2 + 4*L3 + 8*L4 + 16*L5`.
+
+| Sheet | Content |
+|---|---|
+| `Notes` | What the table is and how the bitmask is defined |
+| `Sensitivity` | Five configurations (baseline, PP.H4 ≥ 0.70, targets top-5, coherence ≥ 90%, all three) with the size of each layer and the five-layer intersection |
+| `Membership` | Every gene that appears in at least one layer, with its bitmask in each configuration |
+| `Coherence panel` | The 71 genes passing layers 1 and 2, with the variant used, the number of testable tissues, the concordance and the layer-4 call |
+
+In every configuration the five-layer intersection contains one gene, SCRN2.
+The layer sizes are 337 / 180 / 26 / 36 / 4 at baseline; relaxing colocalisation
+moves layer 3 to 31, relaxing the target criterion moves layer 5 to 7, and
+relaxing direction concordance to 90% moves layer 4 to 43.
+
 ## Regenerating
 
-The table is a direct subset of the exposure-arm MR output (all rows with at
-least one instrument). That intermediate file is not part of this release; the
-published table is the authoritative record of the estimates. The block is
-re-printed, with numerators and denominators, by section 10 of
-`05_脚本/verify_numbers.py`.
+```bash
+python 05_脚本/60_表达/41_cross_tissue_coherence_panel.py   # coherence panel (GTEx API)
+python 05_脚本/90_图表/42_five_layer_sensitivity.py          # membership + sensitivity
+```
+
+`41_…` needs network access on first run and caches its GTEx responses; `42_…`
+is offline and reads only `04_数据/`. The S1 numbers are re-printed, with
+numerators and denominators, by section 10 of `05_脚本/verify_numbers.py`.

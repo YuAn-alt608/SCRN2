@@ -538,141 +538,14 @@ def fig4(g):
 
 
 # ══════════════════════════════════════════════════ 图 5
-def _venn5(ax):
-    """五集"花瓣"韦恩：每个集合一瓣，中心为五层交集。"""
-    from matplotlib.patches import Ellipse
-    from matplotlib.patches import Circle
-
-    sets = [(0, "Whole-blood\nMR (337)", "247", "#2F6FB2"),
-            (90, "Thyroid MR\n(180)", "109", "#7D5BA6"),
-            (180, "Colocalisation\n(26)", "19", "#E08A1E"),
-            (232, "Coherence\n(3)", "3", "#2E7D6B"),
-            (308, "Assignment\n(4)", "0", "#B03A2E")]
-
-    R, EW, EH = 0.62, 1.80, 0.62
-    for th, lab, cnt, col in sets:
-        cx, cy = R * np.cos(np.deg2rad(th)), R * np.sin(np.deg2rad(th))
-        ax.add_patch(Ellipse((cx, cy), EW, EH, angle=th, fc=col, ec=col,
-                             lw=0.8, alpha=0.20, zorder=1))
-        ax.add_patch(Ellipse((cx, cy), EW, EH, angle=th, fc="none", ec=col,
-                             lw=0.7, alpha=0.75, zorder=2))
-        nx, ny = 1.10 * np.cos(np.deg2rad(th)), 1.10 * np.sin(np.deg2rad(th))
-        ax.text(nx, ny, cnt, ha="center", va="center", fontsize=6.0,
-                color=col if cnt != "0" else "#999", fontweight="bold", zorder=4)
-        rad = 1.50 if abs(np.sin(np.deg2rad(th))) > 0.6 else 1.72
-        lx, ly = rad * np.cos(np.deg2rad(th)), rad * np.sin(np.deg2rad(th))
-        ha = "left" if np.cos(np.deg2rad(th)) > 0.2 else (
-            "right" if np.cos(np.deg2rad(th)) < -0.2 else "center")
-        va = "center" if abs(np.cos(np.deg2rad(th))) > 0.5 else (
-            "bottom" if np.sin(np.deg2rad(th)) > 0 else "top")
-        ax.text(lx, ly, lab, ha=ha, va=va, fontsize=5.6, color=col,
-                linespacing=1.15, zorder=4)
-
-    ax.add_patch(Circle((0, 0), 0.235, fc="white", ec="#555", lw=0.7, zorder=5))
-    ax.text(0, 0, "1", ha="center", va="center", fontsize=7.0, fontweight="bold",
-            color="#B03A2E", zorder=6)
-    ax.text(0.0, -0.42, "SCRN2", ha="center", va="center", fontsize=6.2, fontweight="bold",
-            color="#B03A2E", zorder=6,
-            bbox=dict(boxstyle="round,pad=0.20", fc="white", ec="none", alpha=0.92))
-    ax.text(0.0, -1.88, "Numbers count the genes unique to that layer; the intermediate\n"
-                        "regions are given in panel B and in Table 3.",
-            ha="center", va="top", fontsize=5.4, color="#666", linespacing=1.35)
-
-    ax.set_xlim(-2.55, 2.55); ax.set_ylim(-2.40, 2.05)
-    ax.set_aspect("equal")
-    ax.set_axis_off()
-
-
 def fig5(g):
-    from PIL import Image
-    fig = plt.figure(figsize=(W, 6.2))
-    gs = fig.add_gridspec(2, 2, hspace=0.40, wspace=0.24,
-                          height_ratios=[1.06, 1], width_ratios=[1.12, 1])
+    """Figure 5 is drawn by 43_fig5_five_layers.py.
 
-    # A 五集韦恩（原生绘制，字号可控）
-    ax = fig.add_subplot(gs[0, 0])
-    _venn5(ax)
-    tag(ax, "A", "Five sets, one gene", x=-0.02, y=1.02)
-
-    # B 交集链
-    ax = fig.add_subplot(gs[0, 1])
-    chain = [("Pairs, FDR<0.05", 733), ("Unique genes", 612), ("1 · whole-blood MR", 337),
-             ("2 · also thyroid MR", 62), ("3 · also colocalised", 6), ("4+5 · all layers", 1)]
-    for i, (lab, v) in enumerate(chain):
-        yv = len(chain) - 1 - i
-        wbar = max(0.62, 0.09 + 0.86 * (v / 733) ** 0.42)
-        ax.add_patch(Rectangle((0, yv - 0.32), wbar, 0.64,
-                               fc=C["TSH"] if i < 5 else C["acc"], alpha=0.30 if i < 5 else 0.55,
-                               ec="none"))
-        ax.text(0.016, yv, lab, va="center", fontsize=6.4,
-                fontweight="bold" if i == 5 else "normal")
-        ax.text(wbar + 0.018, yv, "{:,}".format(v), va="center", fontsize=7,
-                fontweight="bold", color=C["acc"] if i == 5 else "#333")
-        if i < len(chain) - 1:
-            ax.annotate("", xy=(0.5, yv - 0.36), xytext=(0.5, yv - 0.64),
-                        arrowprops=dict(arrowstyle="-|>", lw=0.6, color="#888"))
-    ax.set_xlim(0, 1.26); ax.set_ylim(-0.8, len(chain) - 0.2)
-    ax.set_axis_off()
-    ax.text(0.0, -0.72, "Layer sizes 337 / 180 / 26 / 3 / 4 are not nested: only 62 of the\n"
-                        "180 thyroid-passing genes also pass the whole-blood layer.",
-            fontsize=6.1, color="#555", va="top")
-    tag(ax, "B", "Intersection chain, not a funnel")
-
-    # C 通过矩阵
-    ax = fig.add_subplot(gs[1, 0])
-    rc = g["rc"]
-    rows = [("SCRN2", "31"), ("MCM6", "7"), ("NUCB2", "7"), ("PPP2R1B", "7"),
-            ("UCP2", "7"), ("UROD", "7"), ("YWHAZ", "7"),
-            ("TBKBP1", "16"), ("PRR15L", "5")]
-    M = np.full((len(rows), 5), np.nan)
-    for i, (gene, bit) in enumerate(rows):
-        b = int(bit)
-        for L in range(5):
-            M[i, L] = 1.0 if (b >> L) & 1 else 0.0
-    cmap = LinearSegmentedColormap.from_list("pw", ["#EDEDED", "#2F6FB2"])
-    ax.imshow(M, aspect="auto", cmap=cmap, vmin=0, vmax=1)
-    for i in range(M.shape[0]):
-        for j in range(M.shape[1]):
-            ax.text(j, i, "●" if M[i, j] == 1 else "○", ha="center", va="center",
-                    fontsize=6.6, color="white" if M[i, j] == 1 else "#999")
-    ax.set_xticks(range(5))
-    ax.set_xticklabels(["1  blood\nMR", "2  thyroid\nMR", "3  colo-\ncalisation",
-                        "4  tissue\ncoherence", "5  target\nassignment"], fontsize=6.0)
-    ax.set_yticks(range(len(rows)))
-    ax.set_yticklabels([r[0] for r in rows], fontsize=6.4)
-    for lb in ax.get_yticklabels():
-        if lb.get_text() == "SCRN2":
-            lb.set_fontweight("bold"); lb.set_color(C["acc"])
-    ax.set_xticks(np.arange(-0.5, 5, 1), minor=True)
-    ax.set_yticks(np.arange(-0.5, len(rows), 1), minor=True)
-    ax.grid(which="minor", color="white", lw=1.4)
-    ax.tick_params(which="minor", length=0)
-    ax.set_xlim(-0.5, 5.5)
-    tag(ax, "C", "The six near-misses and the two contenders")
-
-    # D 敏感性
-    ax = fig.add_subplot(gs[1, 1])
-    ax.set_axis_off()
-    ax.text(0.0, 1.0, "Relaxation tested", fontsize=6.8, fontweight="bold", va="top")
-    ax.text(0.62, 1.0, "Coloc. layer", fontsize=6.8, fontweight="bold", va="top", ha="center")
-    ax.text(1.0, 1.0, "Intersection", fontsize=6.8, fontweight="bold", va="top", ha="right")
-    lines = [("Baseline", "26", "SCRN2"),
-             ("PP.H4 ≥ 0.70", "31", "SCRN2"),
-             ("eQTL target top-5", "26", "SCRN2"),
-             ("Coherence ≥ 90%", "26", "SCRN2"),
-             ("All three relaxed", "31", "SCRN2")]
-    for i, (a, b, c) in enumerate(lines):
-        yv = 0.86 - i * 0.155
-        ax.text(0.0, yv, a, fontsize=6.5, va="center")
-        ax.text(0.62, yv, b, fontsize=6.5, va="center", ha="center")
-        ax.text(1.0, yv, c, fontsize=6.5, va="center", ha="right", color=C["acc"],
-                fontweight="bold")
-    ax.text(0.0, -0.02, "The intersection is invariant to every relaxation;\n"
-                        "the colocalisation layer is the only one that moves.",
-            fontsize=6.0, color="#666", style="italic", va="top")
-    tag(ax, "D", "Nothing here would change the answer")
-
-    save(fig, 5)
+    The UpSet plot, the intersection chain, the membership matrix and the threshold
+    sensitivity table all come from 04_数据/09_五层/. Keeping that code in one place
+    means the figure cannot drift from the deposited sensitivity table.
+    """
+    print("  fig5: skipped - run 05_脚本/90_图表/43_fig5_five_layers.py")
 
 
 # ══════════════════════════════════════════════════ 图 6
@@ -1194,7 +1067,7 @@ if __name__ == "__main__":
     print("output:", OUT)
     g = load()
     fns = {1: fig1, 2: fig2, 3: fig3, 4: fig4, 5: fig5, 6: fig6,
-           7: fig7, 8: fig8, 9: fig9}
+           7: fig7, 8: fig8, 9: fig9}   # fig5 delegates to 43_fig5_five_layers.py
     for k in which:
         if k in fns:
             fns[k](g)

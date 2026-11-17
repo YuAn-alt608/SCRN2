@@ -366,75 +366,41 @@
   ]
  },
  "3": {
-  "n": 62,
+  "n": 32,
   "genes": [
    "ACACB",
    "ACADS",
    "ACLY",
-   "ACTR10",
    "AKT1",
-   "ANXA5",
-   "AS3MT",
    "ASXL2",
    "BAIAP2L1",
-   "BAK1",
-   "BTN3A1",
-   "CAPZB",
-   "CNTLN",
-   "DCAKD",
    "DNMBP",
-   "DYNC1I2",
-   "EPS15",
    "GATA3",
-   "GDI2",
    "GINS2",
-   "HAUS4",
-   "HIBCH",
-   "HLA-DMA",
-   "HLA-DRB1",
-   "HRAS",
    "ITPK1",
    "KIF1C",
    "KRT18",
    "MAPT",
-   "MPI",
    "MPZL2",
-   "MPZL3",
-   "MSH2",
    "NBL1",
-   "NEAT1",
    "NEIL2",
-   "NFU1",
    "NRG1",
-   "NUCKS1",
    "PCMTD1",
-   "PLEKHH2",
    "PPP2R5A",
    "PRDX1",
    "PRDX6",
    "PRKCA",
-   "PRMT6",
    "PRSS23",
-   "PSMC3",
-   "PTPN12",
    "RAB20",
-   "RPS26",
-   "RPS28",
    "SELENBP1",
    "SF3A3",
-   "SIVA1",
    "SLC16A3",
    "SLC43A3",
    "SNX8",
    "SULT1A2",
    "TMEM97",
-   "TPO",
-   "TRIP11"
+   "TPO"
   ]
- },
- "4": {
-  "n": 0,
-  "genes": []
  },
  "5": {
   "n": 19,
@@ -460,55 +426,58 @@
    "ZBTB38"
   ]
  },
- "6": {
-  "n": 0,
-  "genes": []
- },
  "7": {
-  "n": 6,
+  "n": 3,
   "genes": [
    "MCM6",
    "NUCB2",
+   "UCP2"
+  ]
+ },
+ "11": {
+  "n": 32,
+  "genes": [
+   "ACTR10",
+   "ANXA5",
+   "AS3MT",
+   "BAK1",
+   "BTN3A1",
+   "CAPZB",
+   "CNTLN",
+   "DCAKD",
+   "DYNC1I2",
+   "EPS15",
+   "GDI2",
+   "HAUS4",
+   "HIBCH",
+   "HLA-DMA",
+   "HLA-DRB1",
+   "HRAS",
+   "MPI",
+   "MPZL3",
+   "MSH2",
+   "NEAT1",
+   "NFU1",
+   "NUCKS1",
+   "PLEKHH2",
+   "PRMT6",
+   "PSMC3",
+   "PTPN12",
+   "RPS26",
+   "RPS28",
+   "SIVA1",
+   "SUOX",
+   "TBC1D2",
+   "TRIP11"
+  ]
+ },
+ "15": {
+  "n": 3,
+  "genes": [
    "PPP2R1B",
-   "UCP2",
    "UROD",
    "YWHAZ"
   ]
- },
- "8": {
-  "n": 0,
-  "genes": []
- },
- "9": {
-  "n": 0,
-  "genes": []
- },
- "10": {
-  "n": 0,
-  "genes": []
- },
- "11": {
-  "n": 2,
-  "genes": [
-   "SUOX",
-   "TBC1D2"
-  ]
- },
- "12": {
-  "n": 0,
-  "genes": []
- },
- "13": {
-  "n": 0,
-  "genes": []
- },
- "14": {
-  "n": 0,
-  "genes": []
- },
- "15": {
-  "n": 0,
-  "genes": []
  },
  "16": {
   "n": 3,
@@ -517,62 +486,6 @@
    "RP11-6N17.4",
    "TBKBP1"
   ]
- },
- "17": {
-  "n": 0,
-  "genes": []
- },
- "18": {
-  "n": 0,
-  "genes": []
- },
- "19": {
-  "n": 0,
-  "genes": []
- },
- "20": {
-  "n": 0,
-  "genes": []
- },
- "21": {
-  "n": 0,
-  "genes": []
- },
- "22": {
-  "n": 0,
-  "genes": []
- },
- "23": {
-  "n": 0,
-  "genes": []
- },
- "24": {
-  "n": 0,
-  "genes": []
- },
- "25": {
-  "n": 0,
-  "genes": []
- },
- "26": {
-  "n": 0,
-  "genes": []
- },
- "27": {
-  "n": 0,
-  "genes": []
- },
- "28": {
-  "n": 0,
-  "genes": []
- },
- "29": {
-  "n": 0,
-  "genes": []
- },
- "30": {
-  "n": 0,
-  "genes": []
  },
  "31": {
   "n": 1,

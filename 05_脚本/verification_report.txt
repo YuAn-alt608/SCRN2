@@ -3,7 +3,7 @@
 SCRN2 / thyroid set-point - numerical verification report
 ==============================================================================
 repository root : D:\NewBeginning\MR1\DATA1
-generated       : 2026-11-18 06:13
+generated       : 2026-11-18 06:26
 
 ==============================================================================
 1  Screen input: EDCs -> genes -> tested pairs
@@ -23,7 +23,7 @@ FDR < 0.05                               : 733 pairs, 612 genes
 share of all tested pairs                : 5.80% (733/12636)  <- text says 5.8%
 evidence_tiers rows                      : 733  (matches significant pairs: True)
 tier distribution                        : {'C_distinct': 422, 'D_unsupported': 244, 'B_strong': 41, 'A_multi': 26}
-significant pairs by outcome             : {'Hashimoto thyroiditis': 14, 'Hypothyroidism': 323, 'TSH': 337, 'Total T4': 59}
+significant pairs by outcome             : {'Free T4': 59, 'Hashimoto thyroiditis': 14, 'Hypothyroidism': 323, 'TSH': 337}
 
 ==============================================================================
 1b EDC burden vs association strength
@@ -37,7 +37,7 @@ EDCs mapped to SCRN2                     : 15
 
   TSH                    n=3391  rho=+0.026 (P=0.133)  median EDC 13 vs 13 (MWU P=0.0141)
                          quintile % significant: 8.2, 11.8, 8.9, 11.5, 11.6
-  Total T4               n=3379  rho=+0.013 (P=0.439)  median EDC 15 vs 13 (MWU P=1.47e-05)
+  Free T4                n=3379  rho=+0.013 (P=0.439)  median EDC 15 vs 13 (MWU P=1.47e-05)
                          quintile % significant: 0.8, 1.1, 1.5, 3.4, 2.8
   Hypothyroidism         n=3372  rho=-0.008 (P=0.649)  median EDC 13 vs 13 (MWU P=0.658)
                          quintile % significant: 10.1, 8.7, 9.8, 9.9, 8.8
@@ -66,7 +66,7 @@ non-empty combinations occupied  : 9 of 31
 ==============================================================================
 3  FinnGen R12 consistency check
 ==============================================================================
-rows: 733 ; by outcome: {'Hashimoto thyroiditis': 14, 'Hypothyroidism': 323, 'TSH': 337, 'Total T4': 59}
+rows: 733 ; by outcome: {'Free T4': 59, 'Hashimoto thyroiditis': 14, 'Hypothyroidism': 323, 'TSH': 337}
 
 FinnGen R12 阴性对照（结局 E4_HYTHY_AI_STRICT）
 =================================================
@@ -81,12 +81,12 @@ FinnGen R12 阴性对照（结局 E4_HYTHY_AI_STRICT）
 - 阴性对照同样用其自身的工具变量做 IVW，不是随机 SNP，因此是最严格的对照。
 - 显著命中的复现率约为阴性对照的 10 倍，说明复现不是"D 级也同样成立"的假象。
 
+  Free T4                  testable   57 ; expected direction 66.7% (38/57) ; recovered 33.3% (19/57)
   Hashimoto thyroiditis    testable   13 ; expected direction 92.3% (12/13) ; recovered 69.2% (9/13)
   Hypothyroidism           testable  314 ; expected direction 94.3% (296/314) ; recovered 66.9% (210/314)
   TSH                      testable  325 ; expected direction 74.5% (242/325) ; recovered 35.1% (114/325)
-  Total T4                 testable   57 ; expected direction 66.7% (38/57) ; recovered 33.3% (19/57)
 
-discovery-FinnGen correlation (r) by outcome: {'Hashimoto thyroiditis': '0.91', 'Hypothyroidism': '0.91', 'TSH': '0.42', 'Total T4': '0.09'}
+discovery-FinnGen correlation (r) by outcome: {'Free T4': '0.09', 'Hashimoto thyroiditis': '0.91', 'Hypothyroidism': '0.91', 'TSH': '0.42'}
 
 pooled over outcomes, by evidence tier (section 2.2):
   A_multi        testable  24 ; recovered 70.8% (17/24) ; expected direction 83.3% (20/24)
@@ -137,7 +137,7 @@ GTEx v8 tissues scanned      : 49 (denominator 70 in every tissue)
 [A] whole-blood eQTLGen instrument rs11079797 (Wald ratio)
               outcome     method  nsnp        b       se     pval      fdr
                   TSH Wald ratio     1 0.027196 0.005886 0.000004 0.000124
-             Total T4 Wald ratio     1 0.002497 0.009157 0.785063 0.949035
+              Free T4 Wald ratio     1 0.002497 0.009157 0.785063 0.949035
        Hypothyroidism Wald ratio     1 0.069599 0.014632 0.000002 0.000090
 Hashimoto thyroiditis Wald ratio     1 0.175624 0.045388 0.000109 0.031456
 
@@ -337,7 +337,7 @@ nominally significant : 3 of 32 ; smallest FDR q = 0.205
 EDC exposure        Outcome  n SNP      beta       SE        P    FDR q
        MECPP Hypothyroidism      3  0.161646 0.060869 0.007916 0.205295
        MEHHP Hypothyroidism      1 -0.539453 0.244212 0.027178 0.289896
-        PFOS            FT4      2 -0.076924 0.030913 0.012831 0.205295
+        PFOS        Free T4      2 -0.076924 0.030913 0.012831 0.205295
 
 curated human EDC records for SCRN2 : 23
   by class     : {'Metal': 12, 'Bisphenol': 6, 'PFAS': 3, 'PBDE': 2}
@@ -405,9 +405,9 @@ motif occlusion in the docked pose (total buried 271.6 A^2):
   M2  QVDRR (351-355) buried   82.4 A^2 of  399.6 =  20.6% ; min distance 3.0 A
 
 ==============================================================================
-12 Values quoted from external files or entered in plotting scripts
+12 Values not recomputed by this script
 ==============================================================================
-These cannot be recomputed from 04_数据/; each is named where it comes from.
+Each entry names where the value comes from, so it can be checked at source.
   power-matched counts (Figure 7D)        : 04_数据/08_平面与跨族裔/s08b_power.txt
   GEO log2 fold changes (Figure 8E)       : 04_数据/06_表达与单细胞/SCRN2_geo_expression_validation.txt
   threshold sensitivity (Figure 5D)       : recomputed offline by 05_脚本/90_图表/42_five_layer_sensitivity.py

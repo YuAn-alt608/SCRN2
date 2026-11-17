@@ -246,7 +246,7 @@ def fig2(g):
 
     # B 堆叠
     ax = fig.add_subplot(gs[0, 1])
-    order = ["TSH", "Hypothyroidism", "Total T4", "Hashimoto thyroiditis"]
+    order = ["TSH", "Hypothyroidism", "Free T4", "Hashimoto thyroiditis"]
     tcol = {"A_multi": "#1F3B57", "B_strong": "#4E7AA8", "C_distinct": "#93B4D1",
             "D_unsupported": "#D9D9D9"}
     bottom = np.zeros(len(order))
@@ -452,7 +452,7 @@ def fig4(g):
     ax.set_xlim(0, 1.02)
     # 内嵌：只看显著的 733 对
     axi = ax.inset_axes([0.10, 0.60, 0.36, 0.33])
-    mp = {"TSH": "TSH", "Hypothyroidism": "HYPO", "Total T4": "T4",
+    mp = {"TSH": "TSH", "Hypothyroidism": "HYPO", "Free T4": "T4",
           "Hashimoto thyroiditis": "HASH"}
     sigset = set(zip(g["tiers"].gene, g["tiers"].outcome.map(mp)))
     issig = np.array([(gg, oo) in sigset for gg, oo in zip(co.gene, co.outcome)])
@@ -729,15 +729,15 @@ def fig7(g):
     # B 森林图
     ax = fig.add_subplot(gs[1, 0])
     wb = g["mr"][g["mr"].gene == "SCRN2"].set_index("outcome")
-    code = {"TSH": "TSH", "Hypothyroidism": "HYPO", "Total T4": "T4",
+    code = {"TSH": "TSH", "Hypothyroidism": "HYPO", "Free T4": "T4",
             "Hashimoto thyroiditis": "HASH"}
     th = g["gw"][g["gw"].gene == "SCRN2"].copy()
     th["oc"] = th.outcome.map({v: k for k, v in code.items()})
     th = th.set_index("oc")
-    LONGS = ["TSH", "Total T4", "Hypothyroidism", "Hashimoto thyroiditis"]
-    LAB = {"TSH": "TSH", "Total T4": "Free T4", "Hypothyroidism": "Hypothyroidism",
+    LONGS = ["TSH", "Free T4", "Hypothyroidism", "Hashimoto thyroiditis"]
+    LAB = {"TSH": "TSH", "Free T4": "Free T4", "Hypothyroidism": "Hypothyroidism",
            "Hashimoto thyroiditis": "Hashimoto"}
-    COL = {"TSH": C["TSH"], "Total T4": C["T4"], "Hypothyroidism": C["HYPO"],
+    COL = {"TSH": C["TSH"], "Free T4": C["T4"], "Hypothyroidism": C["HYPO"],
            "Hashimoto thyroiditis": C["HASH"]}
     labels, est, se, cols = [], [], [], []
     for oc in LONGS:

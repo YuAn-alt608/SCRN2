@@ -26,7 +26,7 @@ OUTCOMES <- list(
   TSH  = list(file = "data/region_TSH.tsv.gz",  type = "quant", N = 482873,
               label = "TSH"),
   T4   = list(file = "data/region_T4.tsv.gz",   type = "quant", N = 191449,
-              label = "Total T4"),
+              label = "Free T4"),
   HYPO = list(file = "data/region_HYPO.tsv.gz", type = "cc",    N = 1046991,
               s = 98805 / 1046991, label = "Hypothyroidism"),
   HASH = list(file = "data/region_HASH.tsv.gz", type = "cc",    N = 395640,

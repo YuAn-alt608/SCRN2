@@ -105,7 +105,7 @@ def main():
     mr.columns = [c.strip() for c in mr.columns]
     sig = mr[mr["fdr"].notna() & (mr["fdr"] < 0.05)].copy()
     iv = pd.read_csv(os.path.join(DATA, "ivs.tsv"), sep="\t")
-    map_name = {"TSH": "TSH", "Total T4": "T4",
+    map_name = {"TSH": "TSH", "Free T4": "T4",
                 "Hypothyroidism": "HYPO", "Hashimoto thyroiditis": "HASH"}
     sig["oc"] = sig["outcome"].map(map_name)
     print(f"待复现命中: {len(sig)} 条")

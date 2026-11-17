@@ -29,7 +29,7 @@ dir.create("results", showWarnings = FALSE)
 
 CFG <- list(
   TSH  = list(type = "quant", N = 482873, label = "TSH"),
-  T4   = list(type = "quant", N = 191449, label = "Total T4"),
+  T4   = list(type = "quant", N = 191449, label = "Free T4"),
   HYPO = list(type = "cc", N = 1046991, s = 98805 / 1046991, label = "Hypothyroidism"),
   HASH = list(type = "cc", N = 395640, s = 15654 / 395640, label = "Hashimoto thyroiditis")
 )

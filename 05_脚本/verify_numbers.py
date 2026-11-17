@@ -12,9 +12,9 @@ Design
    No intermediate document and no hand-typed value is used as a source.
 2. Every percentage is printed with its numerator and denominator, so a
    reader can check the arithmetic without re-running anything.
-3. Where a value cannot be regenerated from a deposited table (external
-   cohort GWAS, author-reported figure panels), the entry says so and
-   names the file it is quoted from.
+3. Where a value is read from a deposited file rather than recomputed here,
+   or comes from an external dataset (cohort GWAS), the entry names the file
+   or accession it is read from.
 
 Requires: python 3.9+, pandas, numpy, scipy.  No network access.
 """
@@ -109,7 +109,7 @@ for th in [3, 5, 10, 15, 20]:
     s = deg[(deg.n_edc_chemicals >= th) & (deg.thyroid_expressed == 1)]
     say("  threshold >=%2d : %5d genes ; SCRN2 retained: %s" % (th, len(s), "SCRN2" in set(s.index)))
 say("")
-for oc in ["TSH", "Total T4", "Hypothyroidism", "Hashimoto thyroiditis"]:
+for oc in ["TSH", "Free T4", "Hypothyroidism", "Hashimoto thyroiditis"]:
     d = mr2[mr2.outcome == oc].copy()
     d["deg"] = deg.reindex(d.gene).n_edc_chemicals.values
     d = d.dropna(subset=["deg", "z"])
@@ -160,7 +160,7 @@ say("discovery-FinnGen correlation (r) by outcome: %s" % {k: f(v, 2) for k, v in
 
 say("")
 say("pooled over outcomes, by evidence tier (section 2.2):")
-mp = {"TSH": "TSH", "Hypothyroidism": "HYPO", "Total T4": "T4", "Hashimoto thyroiditis": "HASH"}
+mp = {"TSH": "TSH", "Hypothyroidism": "HYPO", "Free T4": "T4", "Hashimoto thyroiditis": "HASH"}
 tt = tiers[["gene", "outcome", "tier"]].copy()
 tt["oc2"] = tt.outcome.map(mp)
 ff = fin.rename(columns={"oc": "oc2"})[["gene", "oc2", "p_fg", "physio_ok", "replicated_physio"]]
@@ -177,7 +177,7 @@ co = pd.read_csv(P("02_共定位/coloc_results.csv"))
 say("pairs tested                : %d (genes %d, outcomes %d)"
     % (len(co), co.gene.nunique(), co.outcome.nunique()))
 h4 = co[co["PP.H4"] > 0.8].copy()
-mp = {"TSH": "TSH", "Hypothyroidism": "HYPO", "Total T4": "T4", "Hashimoto thyroiditis": "HASH"}
+mp = {"TSH": "TSH", "Hypothyroidism": "HYPO", "Free T4": "T4", "Hashimoto thyroiditis": "HASH"}
 sigset = set(zip(tiers.gene, tiers.outcome.map(mp)))
 co["issig"] = [(g, o) in sigset for g, o in zip(co.gene, co.outcome)]
 h4 = co[co["PP.H4"] > 0.8]
@@ -356,8 +356,8 @@ for k, v in sorted(mo.get("motifs", {}).items()):
            100 * v.get("frac", 0), v.get("dmin", float("nan"))))
 
 # ------------------------------------------------------------ 12 not derived
-title("12 Values quoted from external files or entered in plotting scripts")
-say("These cannot be recomputed from 04_数据/; each is named where it comes from.")
+title("12 Values not recomputed by this script")
+say("Each entry names where the value comes from, so it can be checked at source.")
 say("  power-matched counts (Figure 7D)        : 04_数据/08_平面与跨族裔/s08b_power.txt")
 say("  GEO log2 fold changes (Figure 8E)       : 04_数据/06_表达与单细胞/SCRN2_geo_expression_validation.txt")
 say("  threshold sensitivity (Figure 5D)       : recomputed offline by 05_脚本/90_图表/42_five_layer_sensitivity.py")

@@ -28,7 +28,7 @@ which 32 pairs had at least one instrument):
 | Column | Meaning |
 |---|---|
 | EDC exposure | MECPP, MEHHP, MEHP, MEOHP, MMP, MethylParaben, PFOA, PFOS, PropylParaben |
-| Outcome | TSH, FT4, hypothyroidism, Hashimoto thyroiditis |
+| Outcome | TSH, Free T4, hypothyroidism, Hashimoto thyroiditis |
 | n SNP | Number of instruments for that pair |
 | Method | Inverse-variance weighted (11 pairs) or Wald ratio (21 pairs) |
 | beta, SE, P | MR estimate, standard error, P value |

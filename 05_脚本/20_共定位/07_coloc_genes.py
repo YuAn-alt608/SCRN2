@@ -47,7 +47,7 @@ for g in info:
         info[g]["tier"] = "T1_multi"
 
 # tier2: 各结局 top
-for oc in ["TSH", "Total T4", "Hypothyroidism"]:
+for oc in ["TSH", "Free T4", "Hypothyroidism"]:
     sub = sorted([r for r in sig if r["outcome"] == oc], key=lambda x: float(x["pval"]))[:TOP_N]
     for r in sub:
         g = r["gene"]

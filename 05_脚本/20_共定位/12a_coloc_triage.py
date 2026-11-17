@@ -51,7 +51,7 @@ def main():
 
     # MR 显著性，用于排序优先级
     mr = pd.read_csv(os.path.join(RES, "MR_significant_FDR05_v2.csv"), encoding="utf-8-sig")
-    OMAP = {"TSH": "TSH", "Total T4": "T4", "Hypothyroidism": "HYPO", "Hashimoto thyroiditis": "HASH"}
+    OMAP = {"TSH": "TSH", "Free T4": "T4", "Hypothyroidism": "HYPO", "Hashimoto thyroiditis": "HASH"}
     mr["outcome"] = mr["outcome"].map(OMAP)
     mrkey = mr.groupby(["gene", "outcome"])["pval"].min().rename("p_mr").reset_index()
 

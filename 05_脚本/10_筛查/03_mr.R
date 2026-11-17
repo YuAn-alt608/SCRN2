@@ -22,7 +22,7 @@ cat(sprintf("工具变量: %d SNP / %d 基因\n", nrow(ivs), uniqueN(ivs$gene)))
 
 OUTCOMES <- list(
   TSH  = list(file = "out_TSH.tsv",  type = "continuous", n = 482873,  label = "TSH"),
-  T4   = list(file = "out_T4.tsv",   type = "continuous", n = 191449,  label = "Total T4"),
+  T4   = list(file = "out_T4.tsv",   type = "continuous", n = 191449,  label = "Free T4"),
   HYPO = list(file = "out_HYPO.tsv", type = "binary",     ncase = 98805, ncont = 948186,
               label = "Hypothyroidism"),
   HASH = list(file = "out_HASH.tsv", type = "binary",     ncase = 15654, ncont = 379986,

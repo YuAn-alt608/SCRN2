@@ -21,7 +21,7 @@ import pandas as pd
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RES = os.path.join(BASE, "results")
 
-OC_NAME = {"TSH": "TSH", "T4": "Total T4", "HYPO": "Hypothyroidism",
+OC_NAME = {"TSH": "TSH", "T4": "Free T4", "HYPO": "Hypothyroidism",
            "HASH": "Hashimoto thyroiditis"}
 
 

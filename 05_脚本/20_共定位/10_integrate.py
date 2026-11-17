@@ -33,11 +33,11 @@ for r in sig:
     n_out[r["gene"]].add(r["outcome"])
 
 LABEL = {
-    "TSH": "TSH", "Total T4": "Total T4",
+    "TSH": "TSH", "Free T4": "Free T4",
     "Hypothyroidism": "Hypothyroidism", "Hashimoto thyroiditis": "Hashimoto",
 }
 # coloc 里结局用短码
-CODE = {"TSH": "TSH", "Total T4": "T4", "Hypothyroidism": "HYPO", "Hashimoto thyroiditis": "HASH"}
+CODE = {"TSH": "TSH", "Free T4": "T4", "Hypothyroidism": "HYPO", "Hashimoto thyroiditis": "HASH"}
 
 rows = []
 for r in sig:

@@ -1,0 +1,23 @@
+# renders / previews
+_rp/
+*.png
+*.pdf
+*.docx
+*.zip
+~$*
+
+# manuscript drafts and internal reports (kept out of the public repo)
+03_稿件/
+07_审稿答复_*.md
+08_修改指导_*.md
+
+# python / R
+__pycache__/
+*.pyc
+.Rhistory
+.RData
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

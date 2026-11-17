@@ -1,0 +1,8 @@
+EDC_chemicals	1580
+thyroid_expressed_genes	18306
+edc_gene_pairs	256899
+genes_with_any_edc	24264
+degree_median	5.0
+degree_threshold	10.0
+high_responder_genes	5272
+thyroid_candidate_genes	4526

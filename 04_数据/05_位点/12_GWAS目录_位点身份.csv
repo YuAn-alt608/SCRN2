@@ -1,0 +1,7 @@
+﻿rsid,p,efo,reported,study,genes,author,pmid,loc
+rs7219420,4.9999999999999996e-06,susceptibility to shingles measurement,Shingles,GCST005001,TBKBP1;TBX21,Tian C,28928442,17:47722933
+rs11079797,1e-07,amyloid-beta measurement,Amyloid beta standardized uptake value ratio (adjusted for APOE E4 cou,GCST90319870,LRRC46,Kim BH,37901794,17:47834936
+rs1989291,1e-40,hypothyroidism,Hypothyroidism,GCST90627750,TBKBP1;TBX21,White SL,41644669,17:47730181
+rs62076103,1e-19,systolic blood pressure,Systolic blood pressure (MTAG),GCST90449056,OSBPL7,Koskeridis F,39537608,17:47811008
+rs62076103,3e-12,pulse pressure measurement,Pulse pressure,GCST90132905,OSBPL7,Plotnikov D,35762941,17:47811008
+rs62076103,5e-31,pulse pressure measurement,Pulse pressure,GCST006629,OSBPL7,Evangelou E,30224653,17:47811008

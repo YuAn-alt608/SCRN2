@@ -1,0 +1,23 @@
+﻿cell_type,n_cells,mean_expr,pct_expressing,max_expr
+thyroid follicular cell,7297,0.06851313,2.9601207,3.5232596
+endothelial cell,460,0.04309893,1.7391304,3.1558044
+plasma cell,433,0.026631474,1.3856813,2.3861601
+smooth muscle cell,211,0.015262621,0.47393364,3.2204132
+B cell,899,0.010752991,0.3337041,3.7332869
+T cell,2509,0.0104492605,0.31885213,3.5859525
+dendritic cell,309,0.0062852693,0.32362458,1.9421482
+epithelial cell,5,0.0,0.0,0.0
+erythroid progenitor cell,1,0.0,0.0,0.0
+fibroblast,187,0.0,0.0,0.0
+mast cell,8,0.0,0.0,0.0
+endocrine cell,1,0.0,0.0,0.0
+macrophage,170,0.0,0.0,0.0
+professional antigen presenting cell,1,0.0,0.0,0.0
+monocyte,31,0.0,0.0,0.0
+stromal cell,98,0.0,0.0,0.0
+primordial germ cell,1,0.0,0.0,0.0
+enterocyte,2,0.0,0.0,0.0
+neutrophil,14,0.0,0.0,0.0
+M2 macrophage,3,0.0,0.0,0.0
+kidney loop of Henle epithelial cell,1,0.0,0.0,0.0
+cord blood hematopoietic stem cell,6,0.0,0.0,0.0

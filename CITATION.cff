@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this code or these derived tables, please cite the manuscript below."
+title: "Colocalisation-resolved expression-QTL screening of endocrine-disrupting chemical-responsive genes nominates SCRN2 as a candidate thyroid set-point gene"
+authors:
+  - family-names: "Yuan"
+    given-names: "Zizheng"
+    affiliation: "University of Lisbon, Lisbon, Portugal"
+type: software
+license: MIT
+repository-code: "https://github.com/<USER>/<REPO>"

@@ -1,0 +1,24 @@
+chemical,mesh,cas,edc_class,molecule,organism,direction,interaction,pmid
+"2,2',4,4'-tetrabromodiphenyl ether",C511295,,PBDE,protein,Homo sapiens,down,"2,2',4,4'-tetrabromodiphenyl ether results in decreased expression of SCRN2 protein",31675489
+Arsenic,D001151,7440-38-2,Metal,gene,Homo sapiens,affects,Arsenic affects the methylation of SCRN2 gene,25304211
+Arsenic,D001151,7440-38-2,Metal,mRNA,Homo sapiens,down,[[sodium arsenite results in increased abundance of Arsenic] co-treated with [manganese chloride results in increased abundance of Manganese]] results in decreased expression of SCRN2 mRNA,39836092
+Arsenic,D001151,7440-38-2,Metal,mRNA,Homo sapiens,down,[[sodium arsenite results in increased abundance of Arsenic] which co-treated with MIR186] results in decreased expression of SCRN2 mRNA,40512198
+bisphenol A,C006780,80-05-7,Bisphenol,protein,Homo sapiens,down,bisphenol A results in decreased expression of SCRN2 protein,34186270
+bisphenol A,C006780,80-05-7,Bisphenol,mRNA,Homo sapiens,down,[INS protein co-treated with Dexamethasone co-treated with 1-Methyl-3-isobutylxanthine co-treated with Indomethacin co-treated with bisphenol A] results in decreased expression of SCRN2 mRNA,28628672
+bisphenol AF,C583074,,Bisphenol,protein,Homo sapiens,up,bisphenol AF results in increased expression of SCRN2 protein,34186270
+bisphenol B,C492482,,Bisphenol,protein,Homo sapiens,up,bisphenol B results in increased expression of SCRN2 protein,34186270
+bisphenol F,C000611646,,Bisphenol,protein,Homo sapiens,up,bisphenol F results in increased expression of SCRN2 protein,34186270
+Cadmium Chloride,D019256,10108-64-2,Metal,protein,Homo sapiens,up,Cadmium Chloride results in increased expression of SCRN2 protein,24527689
+Copper,D003300,7440-50-8,Metal,mRNA,Homo sapiens,down,[NSC 689534 binds to Copper] which results in decreased expression of SCRN2 mRNA,20971185
+Copper Sulfate,D019327,7758-98-7,Metal,mRNA,Homo sapiens,down,Copper Sulfate results in decreased expression of SCRN2 mRNA,19549813
+hexabrominated diphenyl ether 153,C517828,,PBDE,protein,Homo sapiens,down,hexabrominated diphenyl ether 153 results in decreased expression of SCRN2 protein,31675489
+Manganese,D008345,7439-96-5,Metal,mRNA,Homo sapiens,down,[[sodium arsenite results in increased abundance of Arsenic] co-treated with [manganese chloride results in increased abundance of Manganese]] results in decreased expression of SCRN2 mRNA,39836092
+manganese chloride,C025340,7773-01-5,Metal,mRNA,Homo sapiens,down,[[sodium arsenite results in increased abundance of Arsenic] co-treated with [manganese chloride results in increased abundance of Manganese]] results in decreased expression of SCRN2 mRNA,39836092
+perfluoro-n-nonanoic acid,C101816,375-95-1,PFAS,mRNA,Homo sapiens,down,perfluoro-n-nonanoic acid results in decreased expression of SCRN2 mRNA,25812627
+perfluorooctane sulfonic acid,C076994,1763-23-1,PFAS,mRNA,Homo sapiens,down,perfluorooctane sulfonic acid results in decreased expression of SCRN2 mRNA,25812627
+perfluorooctanoic acid,C023036,335-67-1,PFAS,mRNA,Homo sapiens,down,perfluorooctanoic acid results in decreased expression of SCRN2 mRNA,25812627
+sodium arsenite,C017947,13768-07-5,Metal,mRNA,Homo sapiens,down,sodium arsenite results in decreased expression of SCRN2 mRNA,38568856
+sodium arsenite,C017947,13768-07-5,Metal,mRNA,Homo sapiens,down,[[sodium arsenite results in increased abundance of Arsenic] co-treated with [manganese chloride results in increased abundance of Manganese]] results in decreased expression of SCRN2 mRNA,39836092
+sodium arsenite,C017947,13768-07-5,Metal,mRNA,Homo sapiens,down,[[sodium arsenite results in increased abundance of Arsenic] which co-treated with MIR186] results in decreased expression of SCRN2 mRNA,40512198
+sodium arsenite,C017947,13768-07-5,Metal,mRNA,Homo sapiens,up,sodium arsenite results in increased expression of SCRN2 mRNA,39719251
+tetrabromobisphenol A,C020806,79-94-7,Bisphenol,protein,Homo sapiens,down,tetrabromobisphenol A results in decreased expression of SCRN2 protein,31675489

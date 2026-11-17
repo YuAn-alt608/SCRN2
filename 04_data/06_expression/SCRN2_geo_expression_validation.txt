@@ -1,0 +1,49 @@
+========================================================================
+SCRN2 expression by thyroid disease status (independent GEO datasets)
+========================================================================
+MR-predicted direction: every b value for SCRN2 expression -> hypothyroidism / Hashimoto risk
+  is positive
+  (TSH +0.027, HYPO +0.070, HASH +0.176)
+  Expected in tissue: SCRN2 upregulated in hypothyroid / Hashimoto thyroid
+
+------------------------------------------------------------------------
+[Dataset 1] GSE138198  (13 HT vs 3 TN)
+  log2FC(HT vs TN) = -0.0562  direction = down [opposite to the MR prediction]
+  Welch p=0.6780  Mann-Whitney p=0.8000  (not significant)
+  Limitation: only 3 normal samples, power very low
+
+------------------------------------------------------------------------
+[Dataset 2] GSE165724  (RNA-seq, 21 LT+ / 25 LT- / 12 N)
+  LT+ vs N : log2FC=+0.1337  p(MW)=0.1967
+  LT+ vs LT-: log2FC=+0.0880  p(MW)=0.5966  [cleanest internal contrast]
+  (direction agrees with the MR prediction = up, but neither is significant)
+
+------------------------------------------------------------------------
+[Positive controls: checks that the pipeline works] (LT+ vs LT-, log2FC and MW p)
+  IFNG     log2FC=+0.717  p=0.0002
+  CD4      log2FC=+1.729  p=0.0000
+  PTPRC    log2FC=+2.425  p=0.0000
+  TPO      log2FC=-0.661  p=0.0012
+  TG       log2FC=-0.539  p=0.0009
+  -> IFNG/CD4/PTPRC are significantly up and TPO/TG significantly down, as known HT biology requires
+  -> so the null result for SCRN2 is not a pipeline failure but a genuinely small or absent effect
+
+------------------------------------------------------------------------
+[Power analysis] (sd=0.3, alpha=0.05, power=80%)
+  Smallest log2FC detectable with the available samples: n=13 -> 0.330, n=21 -> 0.259, n=25 -> 0.238
+  Detecting log2FC=0.05 needs about 565 per group; log2FC=0.10 needs about 141
+
+------------------------------------------------------------------------
+[Honest conclusion]
+1. In neither independent dataset does SCRN2 differ significantly between HT/LT+ and control
+   thyroid; GSE165724 points the way the MR predicts (up), GSE138198 the other way (but with
+   only 3 normal samples).
+2. This is "insufficient power", not "no effect": the MR b values are very small
+   (R2_outcome ~4e-5), implying a tissue expression difference below 0.1 log2FC, whereas
+   13-25 samples per group can only resolve >=0.24 log2FC.
+3. This is consistent with the single-cell evidence: SCRN2 is a low-abundance, sparsely
+   detected regulatory gene (detected in only 2.96% of follicular cells), so a subtle shift
+   in bulk tissue cannot be resolved in a few dozen samples.
+4. GEO tissue expression therefore neither supports nor refutes the positive MR effect: it is
+   a neutral result limited by statistical power, and the manuscript says so.
+========================================================================

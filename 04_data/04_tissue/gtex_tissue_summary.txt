@@ -1,0 +1,23 @@
+A/B-tier (gene, SNP) pairs: 70; GTEx v8 tissues: 49
+Detected in thyroid: 22/70 (31.4%); same direction: 18/22 (81.8%)
+Thyroid ranks 2 of 49; only Whole_Blood detects more
+Median detection across tissues: 9/70 (12.9%)
+
+10 tissues with the highest detection rate:
+  Whole_Blood                               29/70 (41.4%)  same dir. 100.0%
+  Thyroid                                   22/70 (31.4%)  same dir. 81.8%
+  Cells_Cultured_fibroblasts                21/70 (30.0%)  same dir. 95.2%
+  Artery_Tibial                             21/70 (30.0%)  same dir. 85.7%
+  Adipose_Subcutaneous                      21/70 (30.0%)  same dir. 90.5%
+  Lung                                      20/70 (28.6%)  same dir. 85.0%
+  Esophagus_Mucosa                          19/70 (27.1%)  same dir. 89.5%
+  Nerve_Tibial                              19/70 (27.1%)  same dir. 89.5%
+  Skin_Not_Sun_Exposed_Suprapubic           18/70 (25.7%)  same dir. 88.9%
+  Esophagus_Muscularis                      18/70 (25.7%)  same dir. 94.4%
+
+5 tissues with the lowest detection rate:
+  Liver                                      3/70 ( 4.3%)  same dir. 100.0%
+  Brain_Amygdala                             2/70 ( 2.9%)  same dir. 100.0%
+  Brain_Substantia_nigra                     2/70 ( 2.9%)  same dir. 100.0%
+  Kidney_Cortex                              2/70 ( 2.9%)  same dir. 50.0%
+  Vagina                                     2/70 ( 2.9%)  same dir. 100.0%

@@ -1,0 +1,55 @@
+====================================================================================
+S08  the (TSH, T4) plane: a reference frame for SCRN2
+====================================================================================
+
+Analysable genes: 915 (TSH and T4 estimates both available)
+FDR<0.05: TSH 178 genes, T4 34 genes, both 22 genes
+
+[Q1] Genes with a significant TSH effect (FDR<0.05) and |b_TSH|>0.005: 178
+  median r -0.25, IQR [-0.56, +0.04], range [-2.79, +1.45]
+  reference: TPO has r = -1.07
+
+  Pattern composition:
+    TSH-only (T4 CI includes 0)               84  (47.2%)
+    Synthetic, same ratio                     65  (36.5%)
+    Partial, opposite at a different ratio    21  (11.8%)
+    Concordant (T4 rises with TSH)             8  (4.5%)
+
+[Q2] Among TSH-significant genes, 121/178 (68.0%) have a T4 95% CI that includes 0
+  If the 'TSH-only' share is high -> the SCRN2 signature is the norm at this layer, not specific
+  If the share is low -> SCRN2 is in the minority and the signature carries information
+
+[Q3] SCRN2: b_TSH=+0.0336, b_T4=+0.0050, r=+0.148 (95% CI [-0.554, +0.850])
+  percentile within the TSHSig set: 82.6% (of 178 genes)
+  two-sided empirical p against that distribution: 0.348
+  agreement with the TPO ratio: no
+
+[4] Test of the single-ratio-axis hypothesis
+  If every gene acted through one pathway, r would cluster around the TPO slope.
+  Genes whose 95% CI for r covers -1.07: 65/178 = 36.5%
+  If the true proportion were 95% (a single pathway), the probability of observing this few is p = 1.20e-99
+  -> the single-ratio axis does not hold
+
+  Across all 555 genes, Spearman rho between b_TSH and b_T4 = -0.301 (p=4.66e-13)
+  Negative -> the two axes share feedback structure; weak -> many genes move at one end only
+
+[5] Distribution of the T4 effect among TSH-significant genes (ordered by |z_T4|, top 12)
+gene          b_TSH     b_T4       r                r_CI  pattern
+PSMC3        0.0457  -0.1112   -2.43   [ -4.24, -0.62]  Synthetic, same ratio
+BTN3A1      -0.0413   0.0917   -2.22   [ -3.85, -0.59]  Synthetic, same ratio
+NUCKS1       0.0277  -0.0774   -2.79   [ -5.01, -0.58]  Synthetic, same ratio
+HSD17B8     -0.0351   0.0739   -2.11   [ -3.84, -0.37]  Synthetic, same ratio
+TPO          0.0630  -0.0677   -1.07   [ -1.44, -0.71]  Synthetic, same ratio
+PSMB7       -0.0898   0.0662   -0.74   [ -1.18, -0.29]  Synthetic, same ratio
+ZNF462      -0.0431   0.0633   -1.47   [ -2.15, -0.79]  Synthetic, same ratio
+NBL1         0.2195  -0.0566   -0.26   [ -0.43, -0.09]  Partial, opposite at a different ratio
+NEK6        -0.0787   0.0540   -0.69   [ -1.00, -0.37]  Partial, opposite at a different ratio
+TCF19        0.0782  -0.0508   -0.65   [ -0.98, -0.32]  Partial, opposite at a different ratio
+RABGAP1L     0.0204  -0.0505   -2.48   [ -4.70, -0.26]  Synthetic, same ratio
+SULT1A2      0.0453   0.0461    1.02   [  0.25,  1.78]  Concordant (T4 rises with TSH)
+
+[6] Where known thyroid genes sit on the plane
+gene          b_TSH     p_TSH     b_T4      p_T4       r  call
+TPO          0.0630  1.33e-19  -0.0677  2.08e-13   -1.07  TSH sig / T4 sig
+DIO1         0.0005  9.31e-01   0.0296  7.10e-04   60.00  T4 sig
+SCRN2        0.0336  1.48e-04   0.0050  6.77e-01    0.15  TSH sig

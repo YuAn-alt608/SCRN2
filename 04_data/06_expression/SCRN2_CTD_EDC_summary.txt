@@ -1,0 +1,68 @@
+==============================================================================
+EDC association evidence for SCRN2 (back to the CTD database)
+==============================================================================
+
+Core question: what does this study still have to do with EDCs?
+Answer: SCRN2 entered the candidate set precisely as an "EDC-responsive gene". The CTD
+      evidence is unambiguous, but one directional problem has to be reported honestly
+      (last section).
+
+------------------------------------------------------------------------------
+Total interaction evidence for SCRN2 in CTD
+  Total interaction records: 98
+  Of which EDC-class chemicals: 37
+  Of which human EDC: 23
+
+------------------------------------------------------------------------------
+Direction of EDC exposure on SCRN2 expression (human evidence)
+  Human mRNA, all chemicals: down 31/42, up 8/42
+  Human EDC mRNA: down 13, up 1
+  -> the great majority of EDC exposures lower SCRN2 expression
+
+------------------------------------------------------------------------------
+Core human EDC evidence (direct, single chemical, mRNA, downregulated)
+  [Metal] Arsenic -> SCRN2 mRNA down  (PMID 39836092)
+  [Metal] Arsenic -> SCRN2 mRNA down  (PMID 40512198)
+  [Bisphenol] bisphenol A -> SCRN2 mRNA down  (PMID 28628672)
+  [Metal] Copper -> SCRN2 mRNA down  (PMID 20971185)
+  [Metal] Copper Sulfate -> SCRN2 mRNA down  (PMID 19549813)
+  [Metal] Manganese -> SCRN2 mRNA down  (PMID 39836092)
+  [Metal] manganese chloride -> SCRN2 mRNA down  (PMID 39836092)
+  [PFAS] perfluoro-n-nonanoic acid -> SCRN2 mRNA down  (PMID 25812627)
+  [PFAS] perfluorooctane sulfonic acid -> SCRN2 mRNA down  (PMID 25812627)
+  [PFAS] perfluorooctanoic acid -> SCRN2 mRNA down  (PMID 25812627)
+  [Metal] sodium arsenite -> SCRN2 mRNA down  (PMID 38568856)
+  [Metal] sodium arsenite -> SCRN2 mRNA down  (PMID 39836092)
+  [Metal] sodium arsenite -> SCRN2 mRNA down  (PMID 40512198)
+
+------------------------------------------------------------------------------
+PFAS evidence (the lead EDC class of this study; 3 chemicals, one study, PMID 25812627)
+  perfluoro-n-nonanoic acid -> down (PMID 25812627)
+  perfluorooctane sulfonic acid -> down (PMID 25812627)
+  perfluorooctanoic acid -> down (PMID 25812627)
+
+------------------------------------------------------------------------------
+[MUST BE REPORTED HONESTLY] directional conflict
+  Every MR estimate (Wald ratio) is positive:
+    SCRN2 expression up -> TSH up (+0.027) / hypothyroidism up (+0.070) / Hashimoto up (+0.176)
+    i.e. high SCRN2 expression = higher disease risk, low expression = protective
+
+  CTD direction: EDC exposure -> SCRN2 expression DOWN
+
+  Combining the two: EDC lowers SCRN2 -> hypothyroidism risk FALLS
+  This contradicts the public-health expectation that EDCs harm the thyroid.
+
+  Three honest readings (to be discussed as they stand, not forced into a closed loop):
+   (1) most CTD records are high-dose, in vitro or cross-species acute stress responses,
+       and do not represent the net effect of chronic low-dose exposure in humans;
+   (2) the thyroid toxicity of EDCs may not be mediated THROUGH SCRN2 -
+       SCRN2 is an EDC-responsive gene, but its response and its pathogenicity point in
+       decoupled directions;
+   (3) thyroid feedback makes it hard to extrapolate a one-directional expression change
+       linearly to disease.
+
+  -> Conclusion: the "EDC-responsive gene" identity of SCRN2 stands (the CTD evidence is
+      substantial), but its causal role in mediating EDC thyroid toxicity is NOT
+      supported by the present evidence. In the manuscript it is downgraded to a
+      candidate mechanistic lead rather than a demonstrated causal chain.
+==============================================================================

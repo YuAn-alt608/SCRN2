@@ -1,0 +1,12 @@
+FinnGen R12 negative control (endpoint E4_HYTHY_AI_STRICT)
+=================================================
+Definition: single- or multi-instrument IVW, alleles harmonised, eQTL beta back-calculated from Z (MAF from FinnGen af_alt)
+Replication: same direction as the original analysis and FinnGen nominal p<0.05
+
+Group                          n   same dir. %   same dir. and p<0.05 %
+Significant hits (FDR<0.05)    314      94.3          66.9
+Negative controls (FDR>0.5)     388      66.0           6.7
+
+Notes:
+- The negative controls are run as IVW with their own instruments rather than random SNPs, so this is the strictest control available.
+- Replication among significant hits is about 10 times that of the negative controls, so replication is not an artefact that would hold equally for tier D.

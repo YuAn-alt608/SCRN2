@@ -1,0 +1,50 @@
+========================================================================
+Cross-ancestry concordance: fixed-effect pooling and a heterogeneity test
+========================================================================
+Discovery set  b = +0.0336 (se 0.0089)  z = 3.79
+Check set      b = +0.0288 (se 0.0241)  z = 1.19  p = 0.232
+
+Fixed-effect pooled  b = +0.0330 (se 0.0083)
+              95% CI [+0.0167, +0.0493]
+              z = 3.97, p = 7.07e-05
+Cochran Q = 0.034 (df = 1), p = 0.853, I2 = 0.0%
+Ratio of the two cohort point estimates = 0.858
+
+Wording of the conclusion: there is no significant heterogeneity between the two cohorts
+          (Q p = 0.85), and the pooled effect is almost identical to the discovery set.
+          This supports 'direction-concordant without detectable heterogeneity',
+          but it cannot be called 'replication' (the check set alone is not significant and its
+          95% CI is as wide as +/-0.047).
+
+========================================================================
+Bayesian weight of the directional agreement
+========================================================================
+Model: the true effect is +d or -d (50% prior each), observation normal. d = discovery effect.
+d = discovery effect (0.0336)
+  P(observed positive | true effect +d) = 0.918;  P(observed positive | true effect -d) = 0.082
+  likelihood ratio = 11.20  ->  given a positive observation, posterior probability that the
+  true effect is positive = 91.8%
+  i.e. given the observation, the posterior probability that 'the true effect points the other
+  way' = 8.2% (prior 50%)
+
+d = half the discovery effect (0.0168)
+  P(observed positive | true effect +d) = 0.757;  P(observed positive | true effect -d) = 0.243
+  likelihood ratio = 3.11  ->  given a positive observation, posterior probability that the
+  true effect is positive = 75.7%
+  i.e. given the observation, the posterior probability that 'the true effect points the other
+  way' = 24.3% (prior 50%)
+
+d = 0.05 (a larger effect)
+  P(observed positive | true effect +d) = 0.981;  P(observed positive | true effect -d) = 0.019
+  likelihood ratio = 51.25  ->  given a positive observation, posterior probability that the
+  true effect is positive = 98.1%
+  i.e. given the observation, the posterior probability that 'the true effect points the other
+  way' = 1.9% (prior 50%)
+
+========================================================================
+Lead-SNP level (rs6503875 -> TSH)
+========================================================================
+EUR b = -0.01350 (se 0.00320)
+SAS b = -0.01158 (se 0.00970)
+magnitude ratio = 0.858 (95% CI -0.61-2.32)  -- CI is wide, descriptive only
+  b = -0.01331 (se 0.00304), p = 1.18e-05

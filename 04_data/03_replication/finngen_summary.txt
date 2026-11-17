@@ -1,0 +1,6 @@
+HYPO  n=314 | same dir. 296 (94.3%) | same direction and p<0.05 210 (66.9%) | matches the physiological expectation and p<0.05 210 (66.9%)
+TSH   n=325 | same dir. 242 (74.5%) | same direction and p<0.05 114 (35.1%) | matches the physiological expectation and p<0.05 114 (35.1%)
+T4    n= 57 | same dir.  19 (33.3%) | same direction and p<0.05   7 (12.3%) | matches the physiological expectation and p<0.05  19 (33.3%)
+HASH  n= 13 | same dir.  12 (92.3%) | same direction and p<0.05   9 (69.2%) | matches the physiological expectation and p<0.05   9 (69.2%)
+TSH   fraction matching the physiological expectation 74.5% (n=325)
+T4    fraction matching the physiological expectation 66.7% (n=57)

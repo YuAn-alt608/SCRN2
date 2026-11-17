@@ -1,0 +1,8 @@
+Three-source thyroid eQTL validation (70 A/B-tier instruments; uniform definition: each SNP against its own gene)
+============================================================
+Source 1 Zenodo (salmon): matched 23/70, significant 13, same direction (all) 6/23, same direction (significant) 4/13
+Source 2 eQTL Catalogue: matched 62/70, significant 27, same direction (all) 45/62, same direction (significant) 22/27
+Source 3 GTEx REST API: matched 13/70, significant 13, same direction (all) 9/13, same direction (significant) 9/13
+
+Main finding: most strong whole-blood eQTLs are no longer significant eQTLs for the same gene in thyroid,
+so the tissue mismatch is quantified; even where a signal survives in thyroid, directional agreement is only moderate.

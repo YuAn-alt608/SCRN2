@@ -7,9 +7,8 @@ _rp/
 ~$*
 
 # manuscript drafts and internal reports (kept out of the public repo)
-03_稿件/
-07_审稿答复_*.md
-08_修改指导_*.md
+03_manuscript/
+_internal/
 
 # python / R
 __pycache__/
@@ -21,10 +20,3 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
-
-# internal planning / review notes
-00_README.md
-01_故事线_*.md
-02_证据对照表.md
-06_图表规格.md
-09_v7*.md

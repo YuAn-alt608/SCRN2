@@ -1,0 +1,35 @@
+====================================================================================
+S08b  the plane after power matching
+====================================================================================
+
+TSH-significant genes: 178; T4 GWAS to TSH GWAS sample size ratio about 0.40
+T4 effect predicted by the proportional model: median |pred| 0.0299
+Observed median se_T4: 0.0094
+-> power to detect a proportional effect in the median gene is only 86%
+
+[Subgroup with power >=80%] n=97
+  T4 reaching FDR<0.05: 17 (17.5%)
+  Expected detections if every gene acted proportionally: 93.1
+  -> observed/expected = 0.18
+  Departure from proportionality (pred outside the T4 95% CI): 81/97 = 83.5%
+  SCRN2 in this subgroup: power=0.86, pred=-0.0361, observed=+0.0050, departs=True
+
+[Subgroup with power >=50%] n=165
+  T4 reaching FDR<0.05: 19 (11.5%)
+  Expected detections if every gene acted proportionally: 136.9
+  -> observed/expected = 0.14
+  Departure from proportionality (pred outside the T4 95% CI): 110/165 = 66.7%
+  SCRN2 in this subgroup: power=0.86, pred=-0.0361, observed=+0.0050, departs=True
+
+[Test of what makes SCRN2 special]
+  SCRN2 falls in the direction 'adequately powered but T4 above the proportional prediction': pred -0.0361 -> observed +0.0050
+  Genes in the same subgroup pointing the same way: 42/97
+  Of those, genes with b_T4 higher than SCRN2: 7
+  Examples: SULT1A2, CYBRD1, NDUFB1, EPS8L2, HSD11B2, SMC2, MPI, SCRN2, PAPSS2, SNX8
+  Two-sided empirical p for the SCRN2 b_T4 within that subgroup = 0.845
+
+[Decision rule]
+  If observed/expected ~ 1  -> 'T4 is zero' mostly reflects insufficient power and the SCRN2 signature is not specific
+  If observed/expected << 1 -> most genes genuinely do not move T4, and 'TSH-only' is the norm
+
+  In these data: power>=80% subgroup observed/expected = 0.18

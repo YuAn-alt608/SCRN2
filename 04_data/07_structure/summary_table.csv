@@ -1,0 +1,18 @@
+﻿metric,PFNA
+Ligand RMSD (nm),0.474 ± 0.053
+Protein backbone RMSD (nm),0.155 ± 0.022
+Contact count (<0.6 nm),431.4 ± 62.5
+Hydrogen bonds,0.91 ± 0.49
+Mean ligand RMSF (nm),0.168 ± 0.054
+Radius of gyration Rg (nm),2.099 ± 0.005
+Minimum ligand-protein atom distance (nm),0.278 ± 0.009
+Site Jaccard (vs first frame),0.558 ± 0.053
+Contacting residues per frame,19.8 ± 2.0
+Residence ratio (fraction of time with contacts >= half the first frame),100.0%
+
+MM-GBSA components (kcal/mol),PFNA
+dE_vdW,-21.79 ± 0.26
+dE_elec,87.86 ± 0.51
+dG_GB,-80.64 ± 0.48
+dG_np,-3.98 ± 0.02
+dG_bind,-18.56 ± 0.23

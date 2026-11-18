@@ -6,7 +6,8 @@ authors:
     given-names: "Zizheng"
     affiliation: "University of Lisbon, Lisbon, Portugal"
 type: software
+version: "1.0"
 license: MIT
 repository-code: "https://github.com/YuAn-alt608/SCRN2"
 url: "https://github.com/YuAn-alt608/SCRN2"
-date-released: "2026-11-17"
+date-released: "2026-11-18"

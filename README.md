@@ -12,6 +12,13 @@ numbers in the manuscript are taken.
 
 Zizheng Yuan — University of Lisbon, Lisbon, Portugal
 
+## Frozen version
+
+The code and derived tables in this repository are frozen as **v1.0 (2026-11-18)**, tag `v1.0`,
+the version that matches the submitted manuscript. At the freeze,
+`05_scripts/verification_report.txt` was regenerated from the deposited tables and reports no
+mismatch against the numbers in the manuscript.
+
 ## Citation
 
 If you use this code or these tables, please cite the manuscript above, or this repository:
@@ -30,7 +37,7 @@ If you use this code or these tables, please cite the manuscript above, or this 
 ```
 04_data/                 derived result tables, one folder per analysis block
   01_screen/               EDC–gene universe, instruments, MR screen, evidence tiers
-  02_coloc/             coloc.abf posteriors, circularity audit, independent-locus reruns
+  02_coloc/             coloc.abf posteriors, circularity audit, independent-locus class
   03_replication/               FinnGen R12 consistency check and negative controls
   04_tissue/               GTEx tissue panel and the three thyroid eQTL processings
   05_locus/               locus dissection: LD panel, joint GLS models, window colocalisation

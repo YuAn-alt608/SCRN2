@@ -104,6 +104,7 @@ def load():
     g["plane"] = pd.read_csv(os.path.join(D, "08_plane", "s08_plane_genes.csv"))
     g["gw"] = pd.read_csv(os.path.join(D, "08_plane", "gw_thyroid_mr.csv"))
     g["meta"] = pd.read_csv(os.path.join(D, "08_plane", "three_cohort_meta.csv"))
+    g["power"] = pd.read_csv(os.path.join(D, "08_plane", "s08b_power.csv"))
     g["rc"] = json.load(open(os.path.join(D, "09_layers", "region_counts.json"), encoding="utf-8"))
     g["mds"] = pd.read_csv(os.path.join(D, "07_structure", "summary_table.csv"))
     g["res"] = pd.read_csv(os.path.join(D, "07_structure", "md_per_residue_contacts.csv"))
@@ -698,7 +699,7 @@ def fig6(g):
 def fig7(g):
     pl = g["plane"]
     fig = plt.figure(figsize=(W, 6.4))
-    gs = fig.add_gridspec(2, 2, hspace=0.42, wspace=0.30, height_ratios=[1.15, 1])
+    gs = fig.add_gridspec(2, 3, hspace=0.46, wspace=0.42, height_ratios=[1.15, 1])
 
     # A the TSH-T4 plane
     ax = fig.add_subplot(gs[0, :])
@@ -715,17 +716,17 @@ def fig7(g):
                     textcoords="offset points", fontsize=7, color=C["acc"], fontweight="bold")
     xs = np.array([-0.09, 0.09])
     ax.plot(xs, -1.07 * xs, ls="--", lw=1.0, color="#2E7D6B", zorder=2)
-    ax.text(0.098, -0.088, "slope −1.07\n(TPO reference)", fontsize=6.2, color="#2E7D6B",
-            ha="right", va="bottom")
     ax.plot(xs, -0.25 * xs, ls=":", lw=1.0, color="#888", zorder=2)
     ax.text(-0.088, -0.25 * -0.088 + 0.006, "median ratio −0.25", fontsize=6.0, color="#777")
     ax.axhline(0, lw=0.6, color="#999", zorder=1)
     ax.axhspan(-0.0022, 0.0022, color="#F4E3E0", alpha=0.75, zorder=0)
-    ax.set_xlim(-0.10, 0.10); ax.set_ylim(-0.10, 0.10)
+    ax.set_xlim(-0.10, 0.10); ax.set_ylim(-0.118, 0.10)
     ax.set_xlabel("Effect on TSH (β per SD of predicted expression)")
     ax.set_ylabel("Effect on free T4 (β per SD)")
-    ax.text(0.015, 0.945, "915 genes with both estimates", transform=ax.transAxes,
-            ha="left", va="top", fontsize=6.1, color="#666")
+    ax.text(0.022, 0.045, "915 genes with both estimates", transform=ax.transAxes,
+            ha="left", va="bottom", fontsize=6.1, color="#666")
+    ax.text(0.985, 0.028, "slope −1.07  (TPO reference)", transform=ax.transAxes,
+            ha="right", va="bottom", fontsize=6.2, color="#2E7D6B")
     tag(ax, "A", "Position on the TSH–free T4 plane", x=-0.052)
 
     # B forest plot
@@ -781,7 +782,31 @@ def fig7(g):
             % (nnull, len(s_tsh), 100.0 * nnull / len(s_tsh)),
             transform=ax.transAxes, va="top", fontsize=6.0, color="#444",
             bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9))
-    tag(ax, "C", "What the flat T4 arm cannot rule out")
+    tag(ax, "C", "What the T4 arm cannot rule out", x=-0.16)
+
+    # D power-matched subset: how many genes the T4 arm could have detected, and how many it did
+    ax = fig.add_subplot(gs[1, 2])
+    pw = g["power"]
+    p80 = pw[pw.power >= 0.80]
+    exp_n = p80.power.sum()
+    obs_n = int(p80.t4_sig.sum())
+    ratio = obs_n / max(exp_n, 1e-9)
+    ax.bar([0, 1], [exp_n, obs_n], width=0.56, color=["#B9B9B9", "#E08A1E"])
+    for xx, vv in ((0, exp_n), (1, obs_n)):
+        ax.text(xx, vv + 2.0, "%d" % round(vv), ha="center", fontsize=7.2,
+                fontweight="bold", color="#333")
+    ax.set_xticks([0, 1])
+    ax.set_xticklabels(["Expected if\nproportional", "Observed at\nFDR < 0.05"], fontsize=6.3)
+    ax.set_ylabel("Genes (of 97 with \u2265 80%% power)", fontsize=6.6)
+    ax.set_ylim(0, max(exp_n, obs_n) * 1.62)
+    ax.text(0.96, 0.985, "observed / expected = %.2f" % ratio, transform=ax.transAxes,
+            ha="right", va="top", fontsize=6.3, color="#444")
+    if (p80.gene == "SCRN2").any():
+        s = p80[p80.gene == "SCRN2"].iloc[0]
+        p_two = min(2 * (p80.b_T4 >= s.b_T4).mean(), 2 * (p80.b_T4 <= s.b_T4).mean())
+        ax.text(0.96, 0.905, "SCRN2 is not unusual here\n(two-sided empirical P = %.2f)" % p_two,
+                transform=ax.transAxes, ha="right", va="top", fontsize=6.1, color="#444")
+    tag(ax, "D", "Power-matched subset", x=-0.26)
 
     save(fig, 7)
 

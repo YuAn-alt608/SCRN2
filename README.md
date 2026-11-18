@@ -42,6 +42,9 @@ If you use this code or these tables, please cite the manuscript above, or this 
   09_layers/               five-layer membership, region counts and threshold sensitivity
 
 05_scripts/                 analysis code
+  00_upstream/              three scripts that build the upstream MR tables from the raw GWAS
+                            downloads, plus their own README explaining why they cannot be
+                            re-run from this repository alone
   10_screen … 90_figures/     numbered by analysis block, mirroring 04_data
   verify_numbers.py      regenerates every reported percentage and prints numerator/denominator
   verification_report.txt  output of verify_numbers.py
@@ -84,8 +87,16 @@ report is the one computed from the deposited tables.
 
 Two other entry points are self-contained in the same way:
 `05_scripts/60_expression/39_gtex_cross_tissue_eqtl.py` regenerates the per-tissue table behind
-section 2.9 and Figure 8B (47 tissues, 49 with cis-eQTL data), and
+section 2.9 and Figure 8B (47 tissues, 49 with cis-eQTL data),
+`05_scripts/80_figures/s08b_power_matched_plane.py` regenerates `04_data/08_plane/s08b_power.csv`
+and the text next to it byte for byte from `s08_plane_genes.csv`, and
 `05_scripts/recompute_md_contacts.py` recomputes per-residue contacts from a trajectory.
+
+The three scripts in `05_scripts/00_upstream/` are the exception. Each one reads a full GWAS
+summary-statistics file of several GB, which is not redistributed; they are deposited so the
+derivation of `gw_thyroid_mr.csv`, `three_cohort_meta.csv` and `x02_transancestry.txt` is on
+record. `x02_transancestry.py` needs no input at all and reproduces its deposited text exactly,
+so it can be run here as a check.
 
 The remaining scripts are numbered in the order they were run within each block and are
 archived as the analysis record rather than as one-click pipelines: several of them read
@@ -112,6 +123,13 @@ Every number in Figure 5 is derived from `04_data/09_layers/`, with the per-conf
 gene lists in Supplementary Table S2 and the regeneration script in
 `05_scripts/90_figures/42_five_layer_sensitivity.py`; nothing in that figure is entered by hand.
 
-Two panels still carry values entered in the plotting scripts rather than derived from a
-deposited table — the power-matched counts (Figure 7D) and the GEO fold changes (Figure 8E).
-They are listed here as the remaining gap between the figures and the deposited tables.
+Every panel of Figure 7 is read from a deposited table: panel A from `s08_plane_genes.csv`,
+panel B from the MR tables, panel C from the same plane table, and panel D from
+`s08b_power.csv`, which `05_scripts/80_figures/s08b_power_matched_plane.py` regenerates from
+the plane table. Figure 8 is drawn by `05_scripts/90_figures/44_fig8_tissue_context.py` from
+`04_data/06_expression/`; panel E parses the summary text that the GEO re-analysis left behind
+(`SCRN2_geo_expression_validation.txt`) rather than recomputing it from the GEO series matrix,
+which is public but not redistributed here.
+
+One analysis arm that appeared in earlier drafts is not part of this version: the T3 docking and
+MD series was dropped, and Table 6 reports PFNA only.

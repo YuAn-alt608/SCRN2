@@ -22,15 +22,16 @@ Steps:
   5) compare expected with observed detections -> decide whether "T4 is null" is
      biology or power
 
-Output: results/s08b_power.csv, s08b_power.txt
+Output: 04_data/08_plane/s08b_power.csv and s08b_power.txt
 """
 import os
 import numpy as np
 import pandas as pd
 from scipy import stats
 
-BASE = "D:/NewBeginning/MR1/DATA17_repro_checks"
-OUT = os.path.join(BASE, "results")
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(HERE))
+OUT = os.path.join(ROOT, "04_data", "08_plane")
 ZA = stats.norm.ppf(0.975)
 K = -1.0747          # the TPO slope
 SE_K = 0.1884
@@ -101,5 +102,5 @@ if len(P80):
     L.append(f"\n  In these data: power>=80% subgroup observed/expected = {ratio:.2f}")
 
 txt = "\n".join(L)
-open(os.path.join(OUT, "s08b_power.txt"), "w", encoding="utf-8").write(txt)
+open(os.path.join(OUT, "s08b_power.txt"), "w", encoding="utf-8").write(txt + "\n")
 print(txt)

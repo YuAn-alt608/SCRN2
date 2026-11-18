@@ -259,7 +259,10 @@ para("Layers are defined on the TSH branch of the screen. Layer 1, whole-blood e
      "FDR < 0.05; layer 2, thyroid eQTL MR at FDR < 0.05; layer 3, TSH colocalisation at the "
      "stated PP.H4; layer 4, cross-tissue coherence at the stated concordance; layer 5, "
      "assignment as one of the top-ranked eQTL targets of the instrument. Each column relaxes "
-     "one or more thresholds and reports the resulting layer sizes.",
+     "one or more thresholds and reports the resulting layer sizes. Layer 4 requires the same "
+     "direction of effect in every testable tissue (concordance 1.00): at most 48 tissues are "
+     "testable for a given instrument, so 0.99 and 1.00 select the same genes and the relaxed "
+     "configuration uses 0.90.",
      size=8.5, line=1.1, after=6)
 
 with open(SENS_CSV, encoding="utf-8-sig") as fh:

@@ -102,6 +102,12 @@ Membership is encoded as a bitmask, `bitmask = L1 + 2*L2 + 4*L3 + 8*L4 + 16*L5`.
 | `Membership` | Every gene that appears in at least one layer, with its bitmask in each configuration |
 | `Coherence panel` | The 71 genes passing layers 1 and 2, with the variant used, the number of testable tissues, the concordance and the layer-4 call |
 
+Layer 4 is stored as a concordance of 1.00 — every tissue in which the instrument is a
+significant cis-eQTL must agree in sign. A gene has at most 48 such tissues (49 GTEx v8
+tissues with cis-eQTL data, minus thyroid), so 0.99 and 1.00 select the same genes; the
+earlier 0.99 value was a threshold that could not bind, and the relaxed configuration uses
+0.90, which admits one discordant tissue in ten.
+
 In every configuration the five-layer intersection contains one gene, SCRN2.
 The layer sizes are 337 / 180 / 26 / 36 / 4 at baseline; relaxing colocalisation
 moves layer 3 to 31, relaxing the target criterion moves layer 5 to 7, and

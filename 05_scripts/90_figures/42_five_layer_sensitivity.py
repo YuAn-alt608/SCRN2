@@ -39,9 +39,9 @@ P = lambda *a: os.path.join(ROOT, *a)
 SENTINELS = ["rs6503875", "rs62076102", "rs4794224"]   # the three instrument SNPs named in the text
 
 CONFIGS = [
-    ("baseline",     dict(h4=0.80, top=3, concord=0.99)),
-    ("PP.H4>=0.70",  dict(h4=0.70, top=3, concord=0.99)),
-    ("top-5 targets", dict(h4=0.80, top=5, concord=0.99)),
+    ("baseline",     dict(h4=0.80, top=3, concord=1.00)),
+    ("PP.H4>=0.70",  dict(h4=0.70, top=3, concord=1.00)),
+    ("top-5 targets", dict(h4=0.80, top=5, concord=1.00)),
     ("concordance>=90%", dict(h4=0.80, top=3, concord=0.90)),
     ("all three relaxed", dict(h4=0.70, top=5, concord=0.90)),
 ]

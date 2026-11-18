@@ -133,7 +133,7 @@ CTD (curated human chemical–gene interactions), eQTLGen, GTEx v8, eQTL Catalog
 GCST90572791, GCST90018855, GCST90448634, GCST90319321) and 1000 Genomes phase 3.
 
 Every number in Figure 5 is derived from `04_data/09_layers/`, with the per-configuration
-gene lists in Supplementary Table S2 and the regeneration script in
+gene lists in Supplementary Table S1 and the regeneration script in
 `05_scripts/90_figures/42_five_layer_sensitivity.py`; nothing in that figure is entered by hand.
 
 Every panel of Figure 7 is read from a deposited table: panel A from `s08_plane_genes.csv`,

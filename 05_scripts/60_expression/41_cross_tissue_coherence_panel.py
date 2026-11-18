@@ -18,9 +18,11 @@ What it does
    (/association/singleTissueEqtl) and counts, among tissues other than thyroid, the
    fraction whose normalised effect size has the same sign as the thyroid effect.
 
-Layer 4 passes a gene when that fraction is >= 99% and at least MIN_TISSUES tissues
-carry a significant record; genes below MIN_TISSUES are reported as not evaluable
-rather than as passing on a two-tissue denominator.
+Layer 4 passes a gene when that fraction is 100% (every significant tissue agrees) and
+at least MIN_TISSUES tissues carry a significant record; genes below MIN_TISSUES are
+reported as not evaluable rather than as passing on a two-tissue denominator. The old
+"98% / 99%" formulation was vacuous: a gene has at most 48 non-thyroid testable tissues,
+so 0.99 and 1.00 always selected the same set (48/49 = 97.96%).
 
 What layer 4 does not do
 ------------------------
@@ -52,7 +54,7 @@ CACHE = os.path.join(ROOT, "_rp", "l4_cache")
 OUT = os.path.join(ROOT, "04_data", "06_expression", "cross_tissue_coherence_panel.csv")
 
 MIN_TISSUES = 10      # tissues with a significant record needed to call a gene
-CONCORD = 0.99        # layer-4 threshold
+CONCORD = 1.0         # layer-4 threshold: every significant tissue must agree
 MAX_INSTRUMENTS = 4   # fallback instruments tried per gene
 WORKERS = 6
 

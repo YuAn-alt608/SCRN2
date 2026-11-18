@@ -1,0 +1,4 @@
+﻿gene,snp,tissue,median_tpm,rank,n_tissues,nes,p
+SCRN2,rs6503875,Thyroid,80.54,1,54,-0.3289,2.68407e-23
+SCRN2,rs6503875,Pituitary,59.05,5,54,-0.4116,6.84495e-13
+SCRN2,rs6503875,Whole blood,8.19,54,54,-0.4439,2.59974e-54

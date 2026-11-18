@@ -85,9 +85,11 @@ It needs only pandas, numpy and scipy, reads nothing outside this repository, an
 not touch the network. If a number in the report disagrees with the manuscript, the
 report is the one computed from the deposited tables.
 
-Two other entry points are self-contained in the same way:
+Other entry points are self-contained in the same way:
 `05_scripts/60_expression/39_gtex_cross_tissue_eqtl.py` regenerates the per-tissue table behind
 section 2.9 and Figure 8B (47 tissues, 49 with cis-eQTL data),
+`05_scripts/60_expression/40_gtex_axis_tissue.py` rebuilds `SCRN2_axis_expression.csv`, the
+thyroid, pituitary and whole-blood comparison behind the set-point paragraph of section 2.9,
 `05_scripts/80_figures/s08b_power_matched_plane.py` regenerates `04_data/08_plane/s08b_power.csv`
 and the text next to it byte for byte from `s08_plane_genes.csv`, and
 `05_scripts/recompute_md_contacts.py` recomputes per-residue contacts from a trajectory.

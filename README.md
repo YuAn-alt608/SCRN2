@@ -50,7 +50,7 @@ If you use this code or these tables, please cite the manuscript above, or this 
   verification_report.txt  output of verify_numbers.py
   recompute_md_contacts.py  per-residue contact frequencies from the MD trajectories
 
-06_supplementary/             Supplementary Tables S1 (exposure-arm MR) and S2 (five layers); CSV + XLSX
+06_supplementary/             Supplementary tables S1-S3: one typeset docx, plus S1/S2 as CSV + XLSX
 
 07_structure_models/             structures and simulation settings for the structural arm
   pdb/                   AlphaFold2 SCRN2 model, the PFNA docked complex, ligand poses
@@ -59,17 +59,24 @@ If you use this code or these tables, please cite the manuscript above, or this 
 
 ## Supplementary material
 
-The manuscript cites two numbered supplementary items, and both are here:
+The manuscript cites three numbered supplementary items, all typeset in one
+submission file, `06_supplementary/Supplementary_Material_SCRN2.docx`, built by
+`06_supplementary/_build_supplementary.py`:
 
 - **Supplementary Table S1** — per-pair MR estimates for the nine instrumentable
   EDC exposures (section 2.10):
   `06_supplementary/Table_S1_EDC_exposure_arm_MR.{csv,xlsx}`
 - **Supplementary Table S2** — layer membership and threshold sensitivity for the
   five evidence layers (Figure 5D, Table 3C, section 4.8):
-  `06_supplementary/Table_S2_five_layer_membership_and_sensitivity.xlsx`
+  `06_supplementary/Table_S2_five_layer_membership_and_sensitivity.xlsx`, with the
+  five sensitivity rows also in `Table_S2_sensitivity.csv`
+- **Supplementary Table S3** — PFNA at the SCRN2 surface: docking, 10 ns all-atom
+  MD and MM-GBSA (section 2.10). Sixteen numbers, assembled from
+  `04_data/07_structure/summary_table.csv`, `dock_PFNA.csv` and `mmgbsa_PFNA.json`.
 
-Nothing in the text cites an S3 or a Figure S1, so the numbering matches
-one-to-one. Column definitions are in the README in that folder.
+The docx is not in the repository (the package ships code and result tables, not
+drafts); it is rebuilt in seconds from the two CSVs and the S3 block. Column
+definitions are in the README in that folder.
 
 ## Reproducing the reported numbers
 
@@ -134,5 +141,5 @@ the plane table. Figure 8 is drawn by `05_scripts/90_figures/44_fig8_tissue_cont
 which is public but not redistributed here.
 
 One analysis arm that appeared in earlier drafts is not part of this version: the T3 docking and
-MD series was dropped, and Supplementary Table S3 reports PFNA only. S3 sits in the manuscript
-appendix rather than in 06_supplementary because it is sixteen numbers, not a dataset.
+MD series was dropped, and Supplementary Table S3 reports PFNA only. S3 is typeset with S1 and
+S2 in the one supplementary file, so the manuscript itself carries no appendix and five tables.

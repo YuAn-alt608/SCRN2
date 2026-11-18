@@ -1,29 +1,41 @@
-# 06_supplementary — Supplementary Tables S1 and S2
+# 06_supplementary — Supplementary Tables S1–S3
 
-The manuscript cites three numbered supplementary items:
+The manuscript cites three numbered supplementary items, and all three are
+typeset in one submission file:
 
+- **`Supplementary_Material_SCRN2.docx`** (+ `.pdf`) — the three tables, in the
+  order the manuscript cites them. S1 and S3 are landscape/portrait pages of the
+  same document, so a referee reads S1 (32 rows of MR estimates), S2 (the layer
+  sensitivity table) and S3 (the PFNA simulation summary) without opening three
+  attachments. Built by `_build_supplementary.py`.
 - **Supplementary Table S1** — the exposure-arm MR estimates (section 2.10).
 - **Supplementary Table S2** — five-layer membership and threshold sensitivity
   (Figure 5D and Table 3C), cited in section 4.8.
 - **Supplementary Table S3** — PFNA at the SCRN2 surface: docking, 10 ns all-atom
-  MD and MM-GBSA (section 2.10). Typeset in the manuscript appendix, because it is
-  sixteen numbers and belongs with the text that reads it; the underlying rows are
-  `04_data/07_structure/summary_table.csv`, `dock_PFNA.csv` and `mmgbsa_PFNA.json`.
-  Nothing is duplicated here.
+  MD and MM-GBSA (section 2.10). Sixteen numbers; the underlying rows are
+  `04_data/07_structure/summary_table.csv`, `dock_PFNA.csv` and
+  `mmgbsa_PFNA.json`.
 
-S1 and S2 are files because they are tables of records; S3 is a summary of one
-simulation and stays in the manuscript.
+S3 was typeset in a manuscript appendix up to v15 and moved here in v16, so that
+the manuscript carries five tables and one figure set and the supplement carries
+the three supplementary tables. The docx is built on the manuscript file, which
+is why it inherits the same stylesheet and page numbering.
 
 ## Files
 
 | File | Use |
 |---|---|
+| `Supplementary_Material_SCRN2.docx` | Submission file: S1, S2 and S3 in one document (4 pages) |
+| `Supplementary_Material_SCRN2.pdf` | Same, exported for review |
+| `_build_supplementary.py` | Builds the docx from the two CSVs and the S3 block of the manuscript |
 | `Table_S1_EDC_exposure_arm_MR.csv` | Machine-readable version; this is what `verify_numbers.py` reads |
-| `Table_S1_EDC_exposure_arm_MR.xlsx` | Submission version: title, header, notes, and a second sheet with the per-exposure instrument counts |
-| `Table_S2_five_layer_membership_and_sensitivity.xlsx` | Submission version: notes, sensitivity table, per-gene membership in every configuration, and the 71-gene coherence panel |
+| `Table_S1_EDC_exposure_arm_MR.xlsx` | Workbook version: title, header, notes, and a second sheet with the per-exposure instrument counts |
+| `Table_S2_five_layer_membership_and_sensitivity.xlsx` | Workbook version: notes, sensitivity table, per-gene membership in every configuration, and the 71-gene coherence panel |
 | `Table_S2_sensitivity.csv` | Machine-readable sensitivity table (the numbers in Figure 5D) |
 
-Both S1 files contain the same 32 rows.
+Both S1 files contain the same 32 rows. The docx prints S1 to three decimals and
+S2 to the precision of the CSV; the spreadsheets keep the six-significant-digit
+values, so round-off can differ in the last digit of `MDE80` only.
 
 ## Table S1 — what it contains
 

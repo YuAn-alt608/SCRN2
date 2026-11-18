@@ -1,7 +1,7 @@
 # 07_structure_models — docked complexes and GROMACS parameter files
 
-Geometry and simulation settings for the structural arm of the paper (Table 6,
-Figure 9, and the last Methods paragraph). The numbers these files produce —
+Geometry and simulation settings for the structural arm of the paper (Supplementary
+Table S3, Figure 9, and the last Methods paragraph). The numbers these files produce —
 docking scores, contact counts, residence fractions, diffusion, MM-GBSA — are
 in `04_data/07_structure/`; this folder holds the structures themselves and the
 run settings needed to reproduce them.
@@ -19,10 +19,19 @@ Notes on the coordinates:
 
 - No `CRYST1` record: these are in the docking frame, without a simulation box.
   The box and solvation of the MD system are not stored here; the MD system was
-  53,696 atoms (6,489 solute: 6,460 protein, 29 ligand) in a triclinic box, as
+  53,696 atoms (6,489 solute: 6,461 protein, 28 ligand) in a triclinic box, as
   reported in the Methods.
 - Hydrogens are absent from the PDB files: they were added by GROMACS
-  (`pdb2gmx`, amber99sb-ildn) at system build time.
+  (`pdb2gmx`, amber99sb-ildn) at system build time, which is why the protein
+  contributes more atoms to the simulation than the 3,277 heavy atoms in
+  `AF-SCRN2-Q96FV2.pdb`. For the same reason the ligand enters the simulation as
+  the 28-atom carboxylate of `PFNA_ligand.pdb`, not as the 29-atom neutral acid
+  of the docking pose.
+- The two ligand counts are not a contradiction: `PFNA_docked_pose.pdb` carries
+  the carboxylic proton (29 atoms) because the blind docking was run on the
+  neutral molecule, and the AM1-BCC/GAFF2 parameterisation used for MD was run
+  on the deprotonated carboxylate (28 atoms, net charge −1), which is what
+  Supplementary Table S3 reports.
 - Residue numbering is that of the AlphaFold2 model (1–425), not of a
   crystallographic reference.
 
@@ -53,7 +62,7 @@ defaults.
 
 The docking archive also contains `md_setup/md.mdp`, a **template that was not
 used for the reported trajectories**: it specifies 50,000,000 steps (100 ns),
-Nose–Hoover and Parrinello–Rahman coupling at 300 K. The runs behind Table 6
+Nose–Hoover and Parrinello–Rahman coupling at 300 K. The runs behind Supplementary Table S3
 used 5,000,000 steps (10 ns) with V-rescale and C-rescale at 310 K, as stated in
 the Methods and as recorded in `mdp/raw/`. Do not use that template to reproduce
 the paper.

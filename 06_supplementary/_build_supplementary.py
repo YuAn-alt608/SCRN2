@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 """Build the standalone Supplementary Material file.
 
-Three tables, one document, in the order the manuscript cites them:
+Three tables, one document, numbered in the order the manuscript cites them:
 
-  S1  two-sample MR of the nine instrumentable EDC exposures (landscape, 32 rows)
-  S2  five evidence layers: layer sizes and threshold sensitivity (portrait)
-  S3  PFNA at the SCRN2 surface — docking, MD, MM-GBSA (portrait)
+  S1  five evidence layers: layer sizes and threshold sensitivity (portrait)
+  S2  PFNA at the SCRN2 surface — docking, MD, MM-GBSA (portrait)
+  S3  two-sample MR of the nine instrumentable EDC exposures (landscape, 32 rows)
 
 S3 is copied element-for-element out of the manuscript so that the typesetting
 checked in v15 is preserved; S1 and S2 are re-set from the CSV files that
@@ -35,8 +35,8 @@ from docx.text.paragraph import Paragraph
 BASE = "03_manuscript/MR1_manuscript_v15_2026-11-18.docx"
 OUT = "06_supplementary/Supplementary_Material_SCRN2.docx"
 
-S1_CSV = "06_supplementary/Table_S1_EDC_exposure_arm_MR.csv"
-S2_CSV = "06_supplementary/Table_S2_sensitivity.csv"
+EDC_CSV = "06_supplementary/Table_S3_EDC_exposure_arm_MR.csv"
+SENS_CSV = "06_supplementary/Table_S1_sensitivity.csv"
 
 TITLE = ("Colocalisation-resolved expression, thyroid function and a "
          "perfluoroalkyl congener at SCRN2")
@@ -215,13 +215,13 @@ para("Contents", size=12, bold=True, before=6, after=8)
 
 contents = [
     ("Supplementary Table S1",
-     "Two-sample Mendelian randomisation of the nine instrumentable EDC exposures on four "
-     "thyroid outcomes (32 exposure\u2013outcome pairs)."),
-    ("Supplementary Table S2",
      "Five evidence layers on the TSH branch: layer sizes and the five-layer intersection "
      "under each threshold configuration."),
-    ("Supplementary Table S3",
+    ("Supplementary Table S2",
      "PFNA at the SCRN2 surface: docking, 10 ns all-atom MD and MM-GBSA."),
+    ("Supplementary Table S3",
+     "Two-sample Mendelian randomisation of the nine instrumentable EDC exposures on four "
+     "thyroid outcomes (32 exposure\u2013outcome pairs)."),
 ]
 for head, text in contents:
     p = doc.add_paragraph()
@@ -241,78 +241,18 @@ for head, text in contents:
     r2.font.size = Pt(11)
 
 para("", size=10, after=12)
-para("Machine-readable versions of S1 and S2 are deposited as "
-     "Table_S1_EDC_exposure_arm_MR.xlsx and Table_S2_five_layer_membership_and_sensitivity.xlsx. "
+para("Machine-readable versions are deposited as Table_S1_five_layer_membership_and_sensitivity.xlsx "
+     "(with Table_S1_sensitivity.csv) and Table_S3_EDC_exposure_arm_MR.xlsx. "
      "The per-gene layer membership of all 1,398 screened genes in each configuration, and the "
      "71-gene cross-tissue coherence panel, are carried by the latter and are not reproduced here.",
      size=9, italic=True, line=1.15, after=0)
 
 # ------------------------------------------------------------------ Table S1
-sec = doc.add_section(WD_SECTION.NEW_PAGE)
-landscape(sec)
 
-para("Supplementary Table S1 | Two-sample MR of EDC exposures on thyroid outcomes.",
-     size=10, bold=True, before=0, after=4, line=1.15, keep=True)
-para("Nine EDC exposures could be instrumented, giving 32 testable exposure\u2013outcome pairs "
-     "(47 instrument entries, 13 distinct variants). Estimates are inverse-variance weighted "
-     "where two or more instruments were available and a Wald ratio where one was.",
-     size=8.5, line=1.1, after=6)
-
-with open(S1_CSV, encoding="utf-8-sig") as fh:
-    rows = list(csv.DictReader(fh))
-assert len(rows) == 32, len(rows)
-
-W1 = [1400, 1650, 620, 950, 880, 820, 880, 820, 850, 850, 700, 850, 880, 820, 880]
-t1 = doc.add_table(rows=34, cols=15)          # 2 header rows + 32 pairs
-table_rules(t1, header_row=1)
-
-top = ["EDC exposure", "Outcome", "n SNP", "Method", "\u03b2", "SE", "P", "FDR q",
-       "Cochran Q", "P (Q)", "I\u00b2 (%)", "MDE80 (SD)", "Weighted median", "", ""]
-low = [""] * 12 + ["\u03b2", "SE", "P"]
-for j, h in enumerate(top):
-    cell_text(t1.cell(0, j), h, bold=True,
-              align=WD_ALIGN_PARAGRAPH.LEFT if j < 2 else WD_ALIGN_PARAGRAPH.CENTER)
-for j, h in enumerate(low):
-    cell_text(t1.cell(1, j), h, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER)
-
-for i, r in enumerate(rows, start=2):
-    ivw = r["Method"].startswith("IVW")
-    vals = [r["EDC exposure"], r["Outcome"], r["n SNP"], "IVW" if ivw else "Wald ratio",
-            fmt(r["beta"]), fmt(r["SE"]), fmt(r["P"]), fmt(r["FDR q"]),
-            fmt(r["Cochran Q"], 2) if ivw else "\u2014",
-            fmt(r["P (Q)"]) if ivw else "\u2014",
-            fmt(r["I\u00b2 (%)"], 1) if ivw else "\u2014",
-            fmt(r["MDE80 (SD)"], 2),
-            fmt(r["beta (WM)"]) if ivw else "\u2014",
-            fmt(r["SE (WM)"]) if ivw else "\u2014",
-            fmt(r["P (WM)"]) if ivw else "\u2014"]
-    for j, v in enumerate(vals):
-        cell_text(t1.cell(i, j), v,
-                  align=WD_ALIGN_PARAGRAPH.LEFT if j < 2 else WD_ALIGN_PARAGRAPH.CENTER)
-
-set_widths(t1, W1)
-for j in range(12):
-    vmerge(t1, 0, 1, j)
-repeat_header(t1, 2)
-no_split(t1)
-
-para("Notes. Outcomes: TSH, thyroid-stimulating hormone; free T4, free thyroxine; "
-     "hypothyroidism and Hashimoto thyroiditis as dichotomous endpoints. \u03b2 is in SD units of "
-     "the outcome per SD of genetically predicted exposure. FDR q is Benjamini\u2013Hochberg across "
-     "the 32 pairs; Cochran Q and I\u00b2 describe heterogeneity between instruments; MDE80 is the "
-     "smallest effect detectable with 80% power at the observed instrument strength. Three pairs "
-     "reached nominal P < 0.05 (MECPP\u2013hypothyroidism, MEHHP\u2013hypothyroidism, "
-     "PFOS\u2013free T4); none survived FDR correction (minimum q = 0.21). Weighted-median "
-     "estimates are a pleiotropy-robust sensitivity analysis and are undefined for "
-     "single-instrument pairs. Source: b1_edc_thyroid_mr.csv, reproduced by "
-     "05_scripts/verify_numbers.py, section 10.",
-     size=8, line=1.05, before=6, after=0)
-
-# ------------------------------------------------------------------ Table S2
 sec = doc.add_section(WD_SECTION.NEW_PAGE)
 portrait(sec)
 
-para("Supplementary Table S2 | Five evidence layers: layer sizes and the five-layer "
+para("Supplementary Table S1 | Five evidence layers: layer sizes and the five-layer "
      "intersection under each threshold configuration.", size=10, bold=True, after=4,
      line=1.15, keep=True)
 para("Layers are defined on the TSH branch of the screen. Layer 1, whole-blood eQTL MR at "
@@ -322,7 +262,7 @@ para("Layers are defined on the TSH branch of the screen. Layer 1, whole-blood e
      "one or more thresholds and reports the resulting layer sizes.",
      size=8.5, line=1.1, after=6)
 
-with open(S2_CSV, encoding="utf-8-sig") as fh:
+with open(SENS_CSV, encoding="utf-8-sig") as fh:
     s2 = list(csv.DictReader(fh))
 assert len(s2) == 5, len(s2)
 
@@ -376,16 +316,88 @@ para("Notes. The five-layer intersection is one gene in every configuration. Cou
      "reasonably have set differently; the two significance thresholds are fixed at FDR < 0.05. "
      "Per-gene membership of all 1,398 screened genes in each configuration, as a layer bitmask, "
      "and the 71-gene cross-tissue coherence panel, are in "
-     "Table_S2_five_layer_membership_and_sensitivity.xlsx, generated by "
+     "Table_S1_five_layer_membership_and_sensitivity.xlsx, generated by "
      "05_scripts/90_figures/42_five_layer_sensitivity.py and "
      "05_scripts/60_expression/41_cross_tissue_coherence_panel.py.",
      size=8, line=1.05, before=6, after=0)
 
+# ------------------------------------------------------------------ Table S2
+
+# the caption is copied from the manuscript, where it is numbered S3; renumber
+for _t in s3_caption.iter(qn("w:t")):
+    if _t.text and "Supplementary Table S3" in _t.text:
+        _t.text = _t.text.replace("Supplementary Table S3", "Supplementary Table S2")
+
+# this table now sits between S1 and S3, so it is placed right after the layer table
+_cap = Paragraph(s3_caption, doc)
+_cap.paragraph_format.page_break_before = True
+_prev = [ch for ch in doc.element.body.iterchildren()
+         if ch.tag in (qn('w:p'), qn('w:tbl'))][-1]
+for _el in (s3_caption, s3_table, s3_note):
+    _prev.addnext(_el)
+    _prev = _el
+
 # ------------------------------------------------------------------ Table S3
-doc.add_page_break()
-body.append(s3_caption)
-body.append(s3_table)
-body.append(s3_note)
+
+sec = doc.add_section(WD_SECTION.NEW_PAGE)
+landscape(sec)
+
+para("Supplementary Table S3 | Two-sample MR of EDC exposures on thyroid outcomes.",
+     size=10, bold=True, before=0, after=4, line=1.15, keep=True)
+para("Nine EDC exposures could be instrumented, giving 32 testable exposure\u2013outcome pairs "
+     "(47 instrument entries, 13 distinct variants). Estimates are inverse-variance weighted "
+     "where two or more instruments were available and a Wald ratio where one was.",
+     size=8.5, line=1.1, after=6)
+
+with open(EDC_CSV, encoding="utf-8-sig") as fh:
+    rows = list(csv.DictReader(fh))
+assert len(rows) == 32, len(rows)
+
+W1 = [1400, 1650, 620, 950, 880, 820, 880, 820, 850, 850, 700, 850, 880, 820, 880]
+t1 = doc.add_table(rows=34, cols=15)          # 2 header rows + 32 pairs
+table_rules(t1, header_row=1)
+
+top = ["EDC exposure", "Outcome", "n SNP", "Method", "\u03b2", "SE", "P", "FDR q",
+       "Cochran Q", "P (Q)", "I\u00b2 (%)", "MDE80 (SD)", "Weighted median", "", ""]
+low = [""] * 12 + ["\u03b2", "SE", "P"]
+for j, h in enumerate(top):
+    cell_text(t1.cell(0, j), h, bold=True,
+              align=WD_ALIGN_PARAGRAPH.LEFT if j < 2 else WD_ALIGN_PARAGRAPH.CENTER)
+for j, h in enumerate(low):
+    cell_text(t1.cell(1, j), h, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER)
+
+for i, r in enumerate(rows, start=2):
+    ivw = r["Method"].startswith("IVW")
+    vals = [r["EDC exposure"], r["Outcome"], r["n SNP"], "IVW" if ivw else "Wald ratio",
+            fmt(r["beta"]), fmt(r["SE"]), fmt(r["P"]), fmt(r["FDR q"]),
+            fmt(r["Cochran Q"], 2) if ivw else "\u2014",
+            fmt(r["P (Q)"]) if ivw else "\u2014",
+            fmt(r["I\u00b2 (%)"], 1) if ivw else "\u2014",
+            fmt(r["MDE80 (SD)"], 2),
+            fmt(r["beta (WM)"]) if ivw else "\u2014",
+            fmt(r["SE (WM)"]) if ivw else "\u2014",
+            fmt(r["P (WM)"]) if ivw else "\u2014"]
+    for j, v in enumerate(vals):
+        cell_text(t1.cell(i, j), v,
+                  align=WD_ALIGN_PARAGRAPH.LEFT if j < 2 else WD_ALIGN_PARAGRAPH.CENTER)
+
+set_widths(t1, W1)
+for j in range(12):
+    vmerge(t1, 0, 1, j)
+repeat_header(t1, 2)
+no_split(t1)
+
+para("Notes. Outcomes: TSH, thyroid-stimulating hormone; free T4, free thyroxine; "
+     "hypothyroidism and Hashimoto thyroiditis as dichotomous endpoints. \u03b2 is in SD units of "
+     "the outcome per SD of genetically predicted exposure. FDR q is Benjamini\u2013Hochberg across "
+     "the 32 pairs; Cochran Q and I\u00b2 describe heterogeneity between instruments; MDE80 is the "
+     "smallest effect detectable with 80% power at the observed instrument strength. Three pairs "
+     "reached nominal P < 0.05 (MECPP\u2013hypothyroidism, MEHHP\u2013hypothyroidism, "
+     "PFOS\u2013free T4); none survived FDR correction (minimum q = 0.21). Weighted-median "
+     "estimates are a pleiotropy-robust sensitivity analysis and are undefined for "
+     "single-instrument pairs. Source: b1_edc_thyroid_mr.csv, reproduced by "
+     "05_scripts/verify_numbers.py, section 10.",
+     size=8, line=1.05, before=6, after=0)
 
 doc.save(OUT)
 print("saved", OUT, os.path.getsize(OUT))

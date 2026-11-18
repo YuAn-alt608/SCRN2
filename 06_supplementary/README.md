@@ -3,23 +3,29 @@
 The manuscript cites three numbered supplementary items, and all three are
 typeset in one submission file:
 
-- **`Supplementary_Material_SCRN2.docx`** (+ `.pdf`) — the three tables, in the
-  order the manuscript cites them. S1 and S3 are landscape/portrait pages of the
-  same document, so a referee reads S1 (32 rows of MR estimates), S2 (the layer
-  sensitivity table) and S3 (the PFNA simulation summary) without opening three
-  attachments. Built by `_build_supplementary.py`.
-- **Supplementary Table S1** — the exposure-arm MR estimates (section 2.10).
-- **Supplementary Table S2** — five-layer membership and threshold sensitivity
-  (Figure 5D and Table 3C), cited in section 4.8.
-- **Supplementary Table S3** — PFNA at the SCRN2 surface: docking, 10 ns all-atom
+- **`Supplementary_Material_SCRN2.docx`** (+ `.pdf`) — the three tables, numbered
+  in the order the manuscript cites them, one table per page. A referee reads
+  S1 (the layer-threshold table, cited in section 2.5), S2 (the PFNA simulation
+  summary, cited in section 2.10) and S3 (32 rows of exposure-arm MR estimates,
+  cited in section 2.10) without opening three attachments. Built by
+  `_build_supplementary.py`.
+- **Supplementary Table S1** — five-layer membership and threshold sensitivity
+  (Figure 5D and Table 3C), cited in section 2.5 and Methods 4.8.
+- **Supplementary Table S2** — PFNA at the SCRN2 surface: docking, 10 ns all-atom
   MD and MM-GBSA (section 2.10). Sixteen numbers; the underlying rows are
   `04_data/07_structure/summary_table.csv`, `dock_PFNA.csv` and
   `mmgbsa_PFNA.json`.
+- **Supplementary Table S3** — the exposure-arm MR estimates (section 2.10).
 
-S3 was typeset in a manuscript appendix up to v15 and moved here in v16, so that
-the manuscript carries five tables and one figure set and the supplement carries
-the three supplementary tables. The docx is built on the manuscript file, which
-is why it inherits the same stylesheet and page numbering.
+The numbering changed in v20. Until v19 the three tables were S1 = exposure-arm
+MR, S2 = layers, S3 = PFNA, which is not the order in which the manuscript cites
+them; S2 is cited first (section 2.5), then S3 (section 2.10), then S1 (section
+2.10). v20 renumbered them old S2 → S1, old S3 → S2, old S1 → S3, and the
+machine-readable files were renamed with them. The PFNA table was typeset in a
+manuscript appendix up to v15 and moved here in v16, so that the manuscript
+carries five tables and one figure set and the supplement carries the three
+supplementary tables. The docx is built on the manuscript file, which is why it
+inherits the same stylesheet and page numbering.
 
 ## Files
 
@@ -27,17 +33,17 @@ is why it inherits the same stylesheet and page numbering.
 |---|---|
 | `Supplementary_Material_SCRN2.docx` | Submission file: S1, S2 and S3 in one document (4 pages) |
 | `Supplementary_Material_SCRN2.pdf` | Same, exported for review |
-| `_build_supplementary.py` | Builds the docx from the two CSVs and the S3 block of the manuscript |
-| `Table_S1_EDC_exposure_arm_MR.csv` | Machine-readable version; this is what `verify_numbers.py` reads |
-| `Table_S1_EDC_exposure_arm_MR.xlsx` | Workbook version: title, header, notes, and a second sheet with the per-exposure instrument counts |
-| `Table_S2_five_layer_membership_and_sensitivity.xlsx` | Workbook version: notes, sensitivity table, per-gene membership in every configuration, and the 71-gene coherence panel |
-| `Table_S2_sensitivity.csv` | Machine-readable sensitivity table (the numbers in Figure 5D) |
+| `_build_supplementary.py` | Builds the docx from the two CSVs and the PFNA block of the manuscript |
+| `Table_S1_five_layer_membership_and_sensitivity.xlsx` | Workbook version of S1: notes, sensitivity table, per-gene membership in every configuration, and the 71-gene coherence panel |
+| `Table_S1_sensitivity.csv` | Machine-readable sensitivity table (the numbers in Figure 5D) |
+| `Table_S3_EDC_exposure_arm_MR.csv` | Machine-readable version of S3; this is what `verify_numbers.py` reads |
+| `Table_S3_EDC_exposure_arm_MR.xlsx` | Workbook version: title, header, notes, and a second sheet with the per-exposure instrument counts |
 
-Both S1 files contain the same 32 rows. The docx prints S1 to three decimals and
-S2 to the precision of the CSV; the spreadsheets keep the six-significant-digit
+The two S3 files contain the same 32 rows. The docx prints S3 to three decimals
+and S1 to the precision of the CSV; the spreadsheets keep the six-significant-digit
 values, so round-off can differ in the last digit of `MDE80` only.
 
-## Table S1 — what it contains
+## Table S3 — what it contains
 
 One row per testable exposure–outcome pair (9 EDC exposures × 4 outcomes, of
 which 32 pairs had at least one instrument):
@@ -83,7 +89,7 @@ The two numbers count different things and both are correct; the Methods of the
 manuscript uses the 13-variant count for the instrument set and this table for
 the per-pair estimates.
 
-## Table S2 — what it contains
+## Table S1 — what it contains
 
 Five layers on the TSH branch: whole-blood MR (337 genes), thyroid MR (180),
 colocalisation (26), cross-tissue coherence (36) and target assignment (4).
@@ -106,8 +112,10 @@ relaxing direction concordance to 90% moves layer 4 to 43.
 ```bash
 python 05_scripts/60_expression/41_cross_tissue_coherence_panel.py   # coherence panel (GTEx API)
 python 05_scripts/90_figures/42_five_layer_sensitivity.py          # membership + sensitivity
+python 06_supplementary/_build_supplementary.py                    # the docx
+python 06_supplementary/_export.py                                 # the pdf
 ```
 
 `41_…` needs network access on first run and caches its GTEx responses; `42_…`
-is offline and reads only `04_data/`. The S1 numbers are re-printed, with
+is offline and reads only `04_data/`. The S3 numbers are re-printed, with
 numerators and denominators, by section 10 of `05_scripts/verify_numbers.py`.

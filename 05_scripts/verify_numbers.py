@@ -318,7 +318,7 @@ say(co_ex[["gene", "module", "rho_pc10"]].to_string(index=False))
 
 # -------------------------------------------------------------- 10 exposure
 title("10 Exposure arm (Supplementary Table S1)")
-s1 = pd.read_csv(os.path.join(SUP, "Table_S1_EDC_exposure_arm_MR.csv"))
+s1 = pd.read_csv(os.path.join(SUP, "Table_S3_EDC_exposure_arm_MR.csv"))
 say("exposures instrumented : %d ; testable pairs : %d" % (s1["EDC exposure"].nunique(), len(s1)))
 say("instrument entries summed over pairs : %d  (each variant is reused across outcomes)"
     % int(s1["n SNP"].sum()))

@@ -63,19 +63,23 @@ The manuscript cites three numbered supplementary items, all typeset in one
 submission file, `06_supplementary/Supplementary_Material_SCRN2.docx`, built by
 `06_supplementary/_build_supplementary.py`:
 
-- **Supplementary Table S1** — per-pair MR estimates for the nine instrumentable
-  EDC exposures (section 2.10):
-  `06_supplementary/Table_S1_EDC_exposure_arm_MR.{csv,xlsx}`
-- **Supplementary Table S2** — layer membership and threshold sensitivity for the
-  five evidence layers (Figure 5D, Table 3C, section 4.8):
-  `06_supplementary/Table_S2_five_layer_membership_and_sensitivity.xlsx`, with the
-  five sensitivity rows also in `Table_S2_sensitivity.csv`
-- **Supplementary Table S3** — PFNA at the SCRN2 surface: docking, 10 ns all-atom
+- **Supplementary Table S1** — layer membership and threshold sensitivity for the
+  five evidence layers (Figure 5D, Table 3C, section 2.5 and 4.8):
+  `06_supplementary/Table_S1_five_layer_membership_and_sensitivity.xlsx`, with the
+  five sensitivity rows also in `Table_S1_sensitivity.csv`
+- **Supplementary Table S2** — PFNA at the SCRN2 surface: docking, 10 ns all-atom
   MD and MM-GBSA (section 2.10). Sixteen numbers, assembled from
   `04_data/07_structure/summary_table.csv`, `dock_PFNA.csv` and `mmgbsa_PFNA.json`.
+- **Supplementary Table S3** — per-pair MR estimates for the nine instrumentable
+  EDC exposures (section 2.10):
+  `06_supplementary/Table_S3_EDC_exposure_arm_MR.{csv,xlsx}`
+
+The tables are numbered in the order the manuscript cites them (S1 in section
+2.5, then S2 and S3 in section 2.10); v20 renumbered them, old S2 → S1, old S3 →
+S2, old S1 → S3.
 
 The docx is not in the repository (the package ships code and result tables, not
-drafts); it is rebuilt in seconds from the two CSVs and the S3 block. Column
+drafts); it is rebuilt in seconds from the two CSVs and the PFNA block. Column
 definitions are in the README in that folder.
 
 ## Reproducing the reported numbers

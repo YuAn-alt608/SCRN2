@@ -37,26 +37,39 @@ plt.rcParams.update({
     "font.sans-serif": ["Arial", "DejaVu Sans"],
     "font.size": 7.5,
     "axes.linewidth": 0.6,
-    "savefig.dpi": 300,
+    "savefig.dpi": 420,
     "pdf.fonttype": 42,
 })
 
 ACC, BLUE, GREY = "#B03A2E", "#2F6FB2", "#5A5A5A"
 LAYER_LABELS = ["1  whole-blood", "2  thyroid", "3  coloc.",
                 "4  coherence", "5  assignment"]
+
+# horizontal layout of panel A, in data units of the shared x axis: the left margin
+# carries the set names and set sizes, and the nine bars occupy 0 ... 8. Reserving
+# exactly that much, rather than a round 4 units, is what removes the empty gutter
+# that used to sit between the numbers and the first bar.
+XMIN = -2.86
+SIZE_X = -2.14        # right edge of the set-size column
+NAME_X = -0.77        # right edge of the set-name column
 REGION_ORDER = [1, 2, 3, 5, 7, 11, 16, 15, 31]
 
 
-def tag(ax, letter, title=None, x=-0.09, y=1.10):
-    ax.text(x, y, letter, transform=ax.transAxes, fontsize=11, fontweight="bold",
-            va="top", ha="left", color="#111")
-    if title:
-        try:                                    # 11 pt bold letter is ~0.115 in wide
-            dx = 0.165 / max(ax.get_position().width * ax.figure.get_figwidth(), 0.6)
-        except Exception:
-            dx = 0.06
-        ax.text(x + dx, y, title, transform=ax.transAxes, fontsize=7.4,
-                va="top", ha="left", color="#111")
+FW, FH = 7.09, 6.55
+LEFT, RIGHT = 0.10, 7.01
+
+
+def tag(fig, letter, title, x_in, y_in):
+    """Panel letter and title, positioned in inches from the bottom-left corner.
+
+    Placing them in figure coordinates rather than in axes coordinates is what keeps
+    every panel letter on the same vertical line: an axes-relative offset moves the
+    letter with the axes, and the four panels here do not share a left edge.
+    """
+    fig.text(x_in / FW, y_in / FH, letter, fontsize=10.5, fontweight="bold",
+             va="top", ha="left", color="#111")
+    fig.text((x_in + 0.145) / FW, y_in / FH, title, fontsize=7.4,
+             va="top", ha="left", color="#111")
 
 
 def load():
@@ -75,8 +88,8 @@ def panel_a(ax_bar, ax_mat, rc, sizes):
     ax_bar.bar(x, counts, width=0.62, color=GREY, ec="none", zorder=2)
     ax_bar.set_yscale("log")
     ax_bar.set_ylim(0.8, 700)
-    ax_bar.set_xlim(-0.7, len(order) - 0.3)
-    ax_bar.set_ylabel("Genes in the exact\ncombination (log scale)", fontsize=6.6)
+    ax_bar.set_xlim(XMIN, len(order) - 0.45)
+    ax_bar.set_ylabel("Genes", fontsize=6.4, labelpad=2)
     ax_bar.set_xticks([])
     for xi, c in zip(x, counts):
         ax_bar.text(xi, c * 1.20, "%d" % c, ha="center", va="bottom", fontsize=6.4,
@@ -86,10 +99,9 @@ def panel_a(ax_bar, ax_mat, rc, sizes):
 
     ax_bar.tick_params(axis="x", labelbottom=False, length=0)
 
-    ax_mat.set_xlim(-4.15, len(order) - 0.3)
     ax_mat.set_ylim(4.6, -0.6)
     for j in range(5):
-        ax_mat.plot([-0.45, len(order) - 0.3], [j, j], color="#EDEDED", lw=8.0, zorder=0)
+        ax_mat.plot([-0.45, len(order) - 0.45], [j, j], color="#EDEDED", lw=8.0, zorder=0)
     for xi, b in zip(x, order):
         filled = [j for j in range(5) if (b >> j) & 1]
         for j in filled:
@@ -106,15 +118,16 @@ def panel_a(ax_bar, ax_mat, rc, sizes):
     for s in ax_mat.spines.values():
         s.set_visible(False)
 
-    # layer names and sizes on the left, inside the axes so nothing is clipped
+    # set names and set sizes, in two columns that end 0.3 in short of the first bar
     for j, (lab, n) in enumerate(zip(LAYER_LABELS, sizes)):
-        ax_mat.text(-0.80, j, lab, fontsize=6.1, ha="right", va="center",
+        ax_mat.text(NAME_X, j, lab, fontsize=6.1, ha="right", va="center",
                     color="#222", clip_on=False)
-        ax_mat.text(-2.55, j, "{:,}".format(n), fontsize=5.9, ha="right", va="center",
+        ax_mat.text(SIZE_X, j, "{:,}".format(n), fontsize=5.9, ha="right", va="center",
                     color="#555", clip_on=False)
-    ax_mat.text(-2.55, -0.95, "layer size", fontsize=5.3, ha="right", va="bottom",
-                color="#555")
-    tag(ax_bar, "A", "Five layers, nine occupied combinations of thirty-one", x=-0.30, y=1.13)
+    ax_mat.text(SIZE_X, 1.05, "layer size", fontsize=5.3, ha="right", va="bottom",
+                color="#555", clip_on=False,
+                transform=matplotlib.transforms.blended_transform_factory(
+                    ax_mat.transData, ax_mat.transAxes))
 
 
 def panel_b(ax, mem, rc):
@@ -127,7 +140,7 @@ def panel_b(ax, mem, rc):
              int((mem.baseline == 31).sum())]
     labels = ["FDR < 0.05", "unique genes", "1 · whole-blood MR", "2 · also thyroid MR",
               "3 · also colocalised", "4 · also coherent", "5 · also assigned"]
-    ax.set_xlim(0, 6.9)
+    ax.set_xlim(-0.55, 6.35)
     ax.set_ylim(-0.9, 6.9)
     for i, (lab, v) in enumerate(zip(labels, chain)):
         y = 6 - i
@@ -140,10 +153,9 @@ def panel_b(ax, mem, rc):
         ax.text(1.85 + w + 0.08, y, "{:,}".format(v), va="center", fontsize=6.6,
                 fontweight="bold", color=ACC if i == 6 else "#333")
     ax.set_axis_off()
-    ax.text(0.0, -0.55, "Each step is an intersection, not a subtraction: 71 genes, not 62,\n"
-                        "pass layers 1 and 2, and 32 of them pass no other layer.",
+    ax.text(-0.20, -0.62, "Each step is an intersection, not a subtraction: 71 genes, not 62,\n"
+                          "pass layers 1 and 2, and 32 of them pass no other layer.",
             fontsize=5.9, color="#555", va="top", linespacing=1.3)
-    tag(ax, "B", "Cumulative intersections", x=-0.02, y=1.06)
 
 
 def panel_c(ax, mem):
@@ -171,7 +183,7 @@ def panel_c(ax, mem):
     ax.grid(which="minor", color="white", lw=1.4)
     ax.tick_params(which="minor", length=0)
     ax.tick_params(axis="both", length=0)
-    tag(ax, "C", "The nine closest genes", x=-0.40, y=1.06)
+
 
 
 def panel_d(ax, sens):
@@ -202,27 +214,38 @@ def panel_d(ax, sens):
     ax.text(0.0, -0.10, "Layer sizes for each relaxation; the five-layer intersection is invariant.\n"
                         "Per-configuration gene lists: five_layer_threshold_sensitivity.csv.",
             fontsize=5.7, color="#555", va="top", linespacing=1.35)
-    tag(ax, "D", "Threshold sensitivity", x=-0.02, y=1.16)
+
+
+
+def rect(x0, y0, x1, y1):
+    """Axes rectangle from inches measured off the bottom-left corner."""
+    return [x0 / FW, y0 / FH, (x1 - x0) / FW, (y1 - y0) / FH]
 
 
 def main():
     rc, sens, mem = load()
-    fig = plt.figure(figsize=(7.09, 7.0))
-    outer = fig.add_gridspec(3, 2, height_ratios=[1.28, 1.0, 0.56],
-                             width_ratios=[1.10, 1.0],
-                             hspace=0.34, wspace=0.34,
-                             left=0.215, right=0.975, top=0.955, bottom=0.05)
-    inner = outer[0, :].subgridspec(2, 1, height_ratios=[1.0, 0.30], hspace=0.06)
-    ax_bar = fig.add_subplot(inner[0])
-    ax_mat = fig.add_subplot(inner[1], sharex=ax_bar)
+    fig = plt.figure(figsize=(FW, FH))
+
     b = sens[sens.configuration == "baseline"].iloc[0]
     sizes = [b.layer1_whole_blood_MR, b.layer2_thyroid_MR, b.layer3_colocalisation,
              b.layer4_cross_tissue, b.layer5_target]
-    panel_a(ax_bar, ax_mat, rc, sizes)
 
-    panel_b(fig.add_subplot(outer[1, 0]), mem, rc)
-    panel_c(fig.add_subplot(outer[1, 1]), mem)
-    panel_d(fig.add_subplot(outer[2, :]), sens)
+    # A: bars over the dot matrix, sharing one x axis. Explicit rectangles rather
+    # than a gridspec, so that the panel letter, the y axis and the set-size column
+    # can each be put on a line that the other panels also use.
+    ax_bar = fig.add_axes(rect(LEFT, 5.14, 6.95, 6.20))
+    ax_mat = fig.add_axes(rect(LEFT, 4.52, 6.95, 5.06), sharex=ax_bar)
+    panel_a(ax_bar, ax_mat, rc, sizes)
+    tag(fig, "A", "Five layers, nine occupied combinations of thirty-one", LEFT, 6.48)
+
+    panel_b(fig.add_axes(rect(LEFT, 2.80, 3.42, 4.12)), mem, rc)
+    tag(fig, "B", "Cumulative intersections", LEFT, 4.24)
+
+    panel_c(fig.add_axes(rect(3.86, 2.80, 6.95, 4.12)), mem)
+    tag(fig, "C", "The nine closest genes", 3.86, 4.24)
+
+    panel_d(fig.add_axes(rect(LEFT, 0.86, 6.95, 2.32)), sens)
+    tag(fig, "D", "Threshold sensitivity", LEFT, 2.45)
 
     fig.savefig(os.path.join(OUT, "fig5.png"), bbox_inches="tight", facecolor="white")
     fig.savefig(os.path.join(OUT, "fig5.pdf"), bbox_inches="tight", facecolor="white")

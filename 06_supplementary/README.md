@@ -1,13 +1,18 @@
 # 06_supplementary — Supplementary Tables S1 and S2
 
-The manuscript cites two numbered supplementary items, and this folder holds both
-under exactly those numbers:
+The manuscript cites three numbered supplementary items:
 
 - **Supplementary Table S1** — the exposure-arm MR estimates (section 2.10).
 - **Supplementary Table S2** — five-layer membership and threshold sensitivity
   (Figure 5D and Table 3C), cited in section 4.8.
+- **Supplementary Table S3** — PFNA at the SCRN2 surface: docking, 10 ns all-atom
+  MD and MM-GBSA (section 2.10). Typeset in the manuscript appendix, because it is
+  sixteen numbers and belongs with the text that reads it; the underlying rows are
+  `04_data/07_structure/summary_table.csv`, `dock_PFNA.csv` and `mmgbsa_PFNA.json`.
+  Nothing is duplicated here.
 
-Nothing else carries a supplementary number, so the numbering cannot collide.
+S1 and S2 are files because they are tables of records; S3 is a summary of one
+simulation and stays in the manuscript.
 
 ## Files
 

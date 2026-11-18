@@ -134,4 +134,5 @@ the plane table. Figure 8 is drawn by `05_scripts/90_figures/44_fig8_tissue_cont
 which is public but not redistributed here.
 
 One analysis arm that appeared in earlier drafts is not part of this version: the T3 docking and
-MD series was dropped, and Table 6 reports PFNA only.
+MD series was dropped, and Supplementary Table S3 reports PFNA only. S3 sits in the manuscript
+appendix rather than in 06_supplementary because it is sixteen numbers, not a dataset.
